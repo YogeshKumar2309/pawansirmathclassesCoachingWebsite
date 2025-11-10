@@ -1,8 +1,16 @@
-import React from 'react'
+import HeroCart from "../../components/user/home/HeroCart";
+
+
+
+
 
 const Home = () => {
   return (
-    <div className='bg-red-200'>Home</div>
+  <div className="pt-20 sm:pt-32">
+  <HeroCart
+  />
+  <div className="h-30"></div>
+  </div>
   )
 }
 
