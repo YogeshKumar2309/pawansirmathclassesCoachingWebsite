@@ -1,16 +1,22 @@
+
+import AboutTheTeacherSection from "../../components/user/home/AboutTheTeacherSection";
+import ContactSection from "../../components/user/home/ContactSection";
+import CoursesSection from "../../components/user/home/CoursesSection";
+import FeaturesSection from "../../components/user/home/FeaturesSection";
 import HeroCart from "../../components/user/home/HeroCart";
-
-
-
-
+import TestimonialsSection from "../../components/user/home/TestimonialsSection";
 
 const Home = () => {
   return (
-  <div className="pt-20 sm:pt-32">
-  <HeroCart
-  />
-  <div className="h-30"></div>
-  </div>
+    <div>
+      <HeroCart
+      />
+      <AboutTheTeacherSection />
+      <CoursesSection />
+      <FeaturesSection />
+      <TestimonialsSection />
+      <ContactSection />
+    </div>
   )
 }
 

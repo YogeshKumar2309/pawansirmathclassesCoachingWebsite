@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
-// Hero Data (Top of file)
+// Hero Data
 const heroData = [
   {
     title: "Master Math With Experts",
@@ -29,20 +29,20 @@ const heroData = [
   },
 ];
 
-// Hero Card / Content Component
+// Hero Card Component
 const HeroCard = ({ heroItem }) => {
   return (
-    <div className="space-y-4 max-w-xl">
-      <h1 className="text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500 drop-shadow-lg animate-fadeIn">
+    <div className="space-y-4 max-w-xl mx-auto text-center lg:text-left px-4 sm:px-0">
+      <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500 drop-shadow-lg animate-fadeIn">
         {heroItem.title}
       </h1>
-      <p className="text-gray-200 text-lg lg:text-xl drop-shadow-md animate-fadeIn delay-200">
+      <p className="text-gray-100 text-base sm:text-lg lg:text-xl drop-shadow-md animate-fadeIn delay-200">
         {heroItem.description}
       </p>
       {heroItem.ctaText && (
         <a
           href={heroItem.ctaLink || "#"}
-          className="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          className="inline-block mt-4 px-5 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
         >
           {heroItem.ctaText}
         </a>
@@ -68,28 +68,30 @@ const HeroCart = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center transition-all duration-700"
-      style={{ backgroundImage: `url('${heroItem.image}')` }}
+      className="relative w-full min-h-screen flex items-center justify-center transition-all duration-700 bg-center bg-no-repeat bg-cover"
+      style={{
+        backgroundImage: `url('${heroItem.image}')`,
+      }}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+      {/* Transparent Overlay for Text readability */}
+      <div className="absolute inset-0 bg-black/30"></div>
 
       {/* Navigation Arrows */}
       <button
         onClick={handlePrev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 p-3 rounded-full text-white shadow-lg transition"
+        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 p-2 sm:p-3 rounded-full shadow-lg transition"
       >
-        <ChevronLeft size={28} />
+        <ChevronLeft size={20} />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 p-3 rounded-full text-white shadow-lg transition"
+        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 p-2 sm:p-3 rounded-full shadow-lg transition"
       >
-        <ChevronRight size={28} />
+        <ChevronRight size={20} />
       </button>
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 text-center lg:text-left">
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col justify-center items-center sm:items-start h-full text-center sm:text-left px-4 sm:px-6 lg:px-8">
         <HeroCard heroItem={heroItem} />
       </div>
     </section>

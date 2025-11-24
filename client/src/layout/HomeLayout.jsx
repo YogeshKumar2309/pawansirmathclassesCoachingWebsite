@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 
 
 const HomeLayout = () => {
@@ -8,18 +9,15 @@ const HomeLayout = () => {
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header>
-       <Navbar/>
+        <Navbar />
       </header>
-
       {/* Main Content */}
-      <main className="flex-1 ">
+      <main className="flex-1 mt-[114px] lg:mt-[130px]">
         <Outlet /> {/* Render child routes here */}
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white p-4 text-center">
-        © 2025 Coaching Center. All rights reserved.
-      </footer>
+      <Footer />
     </div>
   );
 };

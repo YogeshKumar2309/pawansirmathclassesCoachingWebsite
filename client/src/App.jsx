@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import HomeLayout from "./layout/HomeLayout";
 import { useState } from "react";
+import Admission from "./pages/admission/Admission";
 // import Login from "./pages/auth/Login";
 
 // Admin Layout & Pages
@@ -41,6 +42,7 @@ const App = () => {
         }
       >
         <Route index element={<Home />} />
+        <Route path="admission" element={<Admission />} />
         {/* <Route
           path="login"
           element={isAuthenticated ? (isAdmin ? <Navigate to="/admin" replace /> : <Navigate to="/user" replace />) : <Login />}

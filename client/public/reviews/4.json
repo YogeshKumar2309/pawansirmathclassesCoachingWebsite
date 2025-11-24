@@ -1,0 +1,26 @@
+{
+  "totalPages": 4,
+  "testimonials": [
+    {
+      "name": "Mehak Sharma",
+      "feedback": "पहली बार science इतना interesting लगा!",
+      "year": "Class 8",
+      "image": "/1.png",
+      "stars": 5
+    },
+    {
+      "name": "Rohit Verma",
+      "feedback": "Sir tests और practice timing पर बहुत ध्यान देते हैं।",
+      "year": "Class 9",
+      "image": "/1.png",
+      "stars": 4
+    },
+    {
+      "name": "Nisha Patel",
+      "feedback": "Pawan Sir की teaching technique सबसे अलग और helpful है।",
+      "year": "Class 10",
+      "image": "/1.png",
+      "stars": 5
+    }
+  ]
+}

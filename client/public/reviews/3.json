@@ -1,0 +1,26 @@
+{
+  "totalPages": 4,
+  "testimonials": [
+    {
+      "name": "Aman Gupta",
+      "feedback": "Exams से पहले revision plan ने मेरे marks boost कर दिए!",
+      "year": "Class 12",
+      "image": "/1.png",
+      "stars": 5
+    },
+    {
+      "name": "Simran Kaur",
+      "feedback": "Math अब आसान लगने लगा है — Sir की वजह से!",
+      "year": "Class 10",
+      "image": "/1.png",
+      "stars": 4
+    },
+    {
+      "name": "Karan Joshi",
+      "feedback": "Sir हर student पर equal attention देते हैं। बहुत best teacher!",
+      "year": "Class 8",
+      "image": "/1.png",
+      "stars": 5
+    }
+  ]
+}
