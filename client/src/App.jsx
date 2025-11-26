@@ -5,6 +5,8 @@ import Home from "./pages/home/Home";
 import HomeLayout from "./layout/HomeLayout";
 import { useState } from "react";
 import Admission from "./pages/admission/Admission";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 // import Login from "./pages/auth/Login";
 
 // Admin Layout & Pages
@@ -38,15 +40,16 @@ const App = () => {
       <Route
         path="/"
         element={
-          !isAuthenticated ? <HomeLayout /> : isAdmin ? <Navigate to="/admin" replace /> : <Navigate to="/user" replace />
+          !isAuthenticated ? <HomeLayout /> : <Navigate to="/user" replace />
         }
       >
         <Route index element={<Home />} />
         <Route path="admission" element={<Admission />} />
-        {/* <Route
+        <Route path="register" element={<Register />} />
+        <Route
           path="login"
-          element={isAuthenticated ? (isAdmin ? <Navigate to="/admin" replace /> : <Navigate to="/user" replace />) : <Login />}
-        /> */}
+          element={isAuthenticated ? <Navigate to="/user" replace /> : <Login />}
+        />
         {/* Add other public pages here */}
       </Route>
 
