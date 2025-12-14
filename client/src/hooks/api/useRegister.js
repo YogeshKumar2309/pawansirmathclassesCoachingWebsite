@@ -4,13 +4,13 @@ export const useRegister = () => {
   const { callApi, loading, error } = useApi();
 
   const registerUser = (userData) => {
-    return callApi('/register', {   // Sirf endpoint
+    return callApi('/v1/auth/register', {
       method: 'POST',
+      withCredentials: true,      // ✅ session cookies ke liye
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData),
+      data: userData,             // 🔥 axios me body ko 'data' bolte hain
     });
   };
 
   return { registerUser, loading, error };
 };
-

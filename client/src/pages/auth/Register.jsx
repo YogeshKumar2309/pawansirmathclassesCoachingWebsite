@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
-import {useRegister} from "../../hooks/api/useRegister.js"
+import { useRegister } from "../../hooks/api/useRegister.js"
+import { useAuth } from "../../context/AuthContext.jsx";
+import { useAuthMe } from "../../hooks/api/useAuthMe.js";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { registerUser, loading, error } = useRegister();
+
+  const navigate = useNavigate();
+  const { getMe } = useAuthMe();
+  const { setAuth } = useAuth();
 
   const {
     register,
@@ -16,15 +22,29 @@ const Register = () => {
   } = useForm();
 
   const handleRegister = async (formData) => {
-    console.log(formData);
     try {
       const response = await registerUser(formData);
-      console.log("Registration successful:", response);
-      
+      if (response) {
+
+        // 2️⃣ /me call → real auth data
+        const meData = await getMe();
+
+
+        // 3️⃣ AuthContext update
+        setAuth({
+          user: meData.user,
+          loggedIn: true,
+          loading: false,
+        });
+
+        // 4️⃣ Redirect to home
+        navigate("/", { replace: true });
+      }
+
+
     } catch (error) {
       console.error("Registration failed:", error);
     }
-
   };
 
   return (

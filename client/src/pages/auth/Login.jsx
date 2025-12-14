@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, replace, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
+import { useLogin } from "../../hooks/api/useLogin";
+import { useAuthMe } from "../../hooks/api/useAuthMe";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { loginUser } = useLogin();
+  const { getMe } = useAuthMe();
+  const { setAuth } = useAuth();
 
+
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,19 +21,22 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = async (formData) => {
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await loginUser(formData);
+      if (res) {
+        const meData = await getMe();
 
-    const data = await res.json();
+        setAuth({
+          user: meData.user,
+          loggedIn: true,
+          loading: false,
+        })
 
-    if (data.success) {
-      alert("Login Successful!");
-      window.location.href = "/dashboard";
-    } else {
-      alert(data.message);
+        navigate("/", { replace: true });
+
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
     }
   };
 

@@ -1,81 +1,117 @@
+// App.jsx
 import { Route, Routes, Navigate } from "react-router-dom";
-
-// Public Layout & Pages
-import Home from "./pages/home/Home";
+import { useAuth } from "./context/AuthContext";
 import HomeLayout from "./layout/HomeLayout";
-import { useState } from "react";
-import Admission from "./pages/admission/Admission";
+import Home from "./pages/home/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-// import Login from "./pages/auth/Login";
-
-// Admin Layout & Pages
-// import AdminLayout from "./layout/admin/AdminLayout";
-// import AdminDashboard from "./pages/admin/AdminDashboard";
-
-// Normal User Layout & Pages (optional, same as public or custom)
-// import UserLayout from "./layout/UserLayout";
-// import UserDashboard from "./pages/user/UserDashboard";
+import Gallery from "./pages/gallery/Gallery";
+import RequireAuth from "./components/common/RequireAuth";
+import { useEffect, useRef } from "react";
+import Faculty from "./pages/faculty/Faculty";
+import AboutUs from "./pages/aboutUs/AboutUs";
+import Courses6to8 from "./pages/courses/Courses6to8";
+import Courses9to10 from "./pages/courses/Courses9to10";
+import Courses11to12 from "./pages/courses/Courses11to12";
+import Schedule from "./pages/schedule/Schedule";
+import Testimonials from "./pages/testimonials/Testimonials";
+import ContactUs from "./pages/contactUs/ContactUs";
+import FAQ from "./pages/faq/Faq";
+import Profile from "./pages/profile/Profile";
 
 const App = () => {
-  // Hardcoded users for testing
-  // const [user, setUser] = useState({
-  //   name: "Yogesh Kumar",
-  //   role: "user", // change to "admin" to test admin
-  // });
-  const [user, setUser] = useState(null); // ab HomeLayout dikhega
+  const { auth } = useAuth();
+  const hasRedirected = useRef(false);
 
+  console.log("🎯 App render:", {
+    loading: auth.loading,
+    loggedIn: auth.loggedIn,
+    role: auth.user?.role,
+    hasRedirected: hasRedirected.current
+  });
 
-  const [loading, setLoading] = useState(false);
+  // ✅ Admin redirect
+  useEffect(() => {
+    console.log("🔍 Admin redirect check:", {
+      hasRedirected: hasRedirected.current,
+      loading: auth.loading,
+      loggedIn: auth.loggedIn,
+      role: auth.user?.role
+    });
 
-  const isAuthenticated = !!user;
-  const isAdmin = user?.role === "admin";
-  // const isUser = user?.role === "user";
+    if (
+      !hasRedirected.current &&
+      !auth.loading &&
+      auth.loggedIn &&
+      auth.user?.role === "admin"
+    ) {
+      hasRedirected.current = true;
+      console.log("🔄 Redirecting admin to admin panel");
+      window.location.href = import.meta.env.VITE_ADMIN_APP_URL;
+    }
+  }, [auth.loading, auth.loggedIn, auth.user?.role]);
 
-  if (loading) return <div>Loading...</div>;
+  // Loading state
+  if (auth.loading) {
+    console.log("⏳ Showing loading screen");
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div>Checking authentication...</div>
+      </div>
+    );
+  }
+
+  // Admin redirect screen
+  if (auth.loggedIn && auth.user?.role === "admin") {
+    console.log("👨‍💼 Showing admin redirect screen");
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div>Redirecting to admin panel...</div>
+      </div>
+    );
+  }
+
+  console.log("📄 Rendering routes");
 
   return (
     <Routes>
-      {/* Public Routes */}
-      <Route
-        path="/"
-        element={
-          !isAuthenticated ? <HomeLayout /> : <Navigate to="/user" replace />
-        }
-      >
+      <Route path="/" element={<HomeLayout />}>
         <Route index element={<Home />} />
-        <Route path="admission" element={<Admission />} />
-        <Route path="register" element={<Register />} />
+         <Route path="faculty" element={<Faculty/>} />
+        <Route path="aboutUs" element={<AboutUs />} />
+
+        {/* Courses Routes */}
+        <Route path="/courses/6-8" element={<Courses6to8 />} />
+        <Route path="/courses/9-10" element={<Courses9to10 />} />
+        <Route path="/courses/11-12" element={<Courses11to12 />} />
+
+        <Route path="schedule" element={<Schedule />} />
+        <Route path="testimonials" element={<Testimonials />} />
+        <Route path="gallery" element={<Gallery />} />
+        <Route path="contactUs" element={<ContactUs />} />
+        <Route path="faq" element={<FAQ />} />
+
         <Route
           path="login"
-          element={isAuthenticated ? <Navigate to="/user" replace /> : <Login />}
+          element={auth.loggedIn ? <Navigate to="/" replace /> : <Login />}
         />
-        {/* Add other public pages here */}
-      </Route>
+        <Route
+          path="register"
+          element={auth.loggedIn ? <Navigate to="/" replace /> : <Register />}
+        />
+     
 
-      {/* Admin Routes */}
-      {/* <Route
-        path="/admin"
+      <Route
+        path="/profile"
         element={
-          isAuthenticated && isAdmin ? <AdminLayout /> : <Navigate to="/login" replace />
+          <RequireAuth>
+            <Profile />
+          </RequireAuth>
         }
-      >
-        <Route index element={<AdminDashboard />} />
+      />
 
-      </Route> */}
+       </Route>
 
-      {/* Normal User Routes */}
-      {/* <Route
-        path="/user"
-        element={
-          isAuthenticated && isUser ? <UserLayout /> : <Navigate to="/login" replace />
-        }
-      >
-        <Route index element={<UserDashboard />} />
- 
-      </Route> */}
-
-      {/* Fallback Route */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

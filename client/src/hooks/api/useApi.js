@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState } from "react";
+import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -10,14 +11,15 @@ export const useApi = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${BASE_URL}${endpoint}`, options);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      return data;
+      const response = await axios({
+        url: `${BASE_URL}${endpoint}`,
+        withCredentials: true,      // 🔥 must for session cookies
+        ...options,                 // method, data, headers etc
+      });
+
+      return response.data;        // axios automatically parses JSON
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || err.message);
       throw err;
     } finally {
       setLoading(false);

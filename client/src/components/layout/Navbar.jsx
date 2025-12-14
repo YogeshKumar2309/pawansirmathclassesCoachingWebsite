@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown, ChevronUp, MoreHorizontal, GraduationCap, Phone, Mail } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { useLogout } from "../../hooks/api/useLogout";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -9,6 +11,23 @@ const Navbar = () => {
   const [moreOpen, setMoreOpen] = useState(false);
   const location = useLocation();
   const moreRef = useRef(null);
+  const { auth } = useAuth();
+
+  const {logoutUser} = useLogout();
+
+  const handleLogout = async () => {
+      try {
+        const res = await logoutUser();
+        console.log(res, "handleLogout");
+        
+        if(res) {
+          alert("logut succesfully!");
+        }
+      } catch (error) {
+        console.log(error.message)
+        alert("try again",error);
+      }
+  }
 
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 50);
@@ -28,18 +47,19 @@ const Navbar = () => {
 
   const mainMenuItems = [
     { title: "HOME", link: "/", icon: "🏠" },
-    { title: "ADMISSION", link: "/admission", icon: "📝" },
+    // { title: "ADMISSION", link: "/admission", icon: "📝" },
+    { title: "FACULTY", link: "/faculty", icon: "👨‍🏫" },
     { title: "ABOUT US", link: "/aboutUs", icon: "ℹ️" },
     {
       title: "COURSES",
       icon: "📚",
       submenu: [
-        { title: "Class 6-10", link: "/courses/6-10", icon: "🎓" },
-        { title: "Class 11-12", link: "/courses/11-12", icon: "📖" },
-        { title: "Competitive Exams", link: "/courses/competitive", icon: "🏆" },
+        { title: "Class 6-8", link: "/courses/6-8", icon: "🎓" },
+        { title: "Class 9-10", link: "/courses/9-10", icon: "📖" },
+        { title: "Class 11-12", link: "/courses/11-12", icon: "🏆" },
+        // { title: "Competitive Exams", link: "/courses/competitive", icon: "🏆" },
       ],
     },
-    { title: "FACULTY", link: "/faculty", icon: "👨‍🏫" },
   ];
 
   const moreMenuItems = [
@@ -78,9 +98,8 @@ const Navbar = () => {
           {subItem.submenu?.length > 0 ? (
             <>
               <div
-                className={`flex justify-between items-center py-2.5 px-3 cursor-pointer rounded-lg transition-all ${
-                  isActive ? "text-orange-500 bg-orange-50 font-semibold" : "text-gray-700 hover:text-orange-500 hover:bg-gray-50"
-                }`}
+                className={`flex justify-between items-center py-2.5 px-3 cursor-pointer rounded-lg transition-all ${isActive ? "text-orange-500 bg-orange-50 font-semibold" : "text-gray-700 hover:text-orange-500 hover:bg-gray-50"
+                  }`}
                 onClick={() => toggleMenu(currentPath)}
               >
                 <span className="flex items-center gap-2">
@@ -98,10 +117,9 @@ const Navbar = () => {
               to={subItem.link}
               onClick={handleMenuClose}
               className={({ isActive }) =>
-                `w-full flex items-center gap-2 py-2.5 px-3 rounded-lg transition-all ${
-                  isActive
-                    ? "text-orange-500 bg-orange-50 font-semibold shadow-sm"
-                    : "text-gray-700 hover:text-orange-500 hover:bg-gray-50"
+                `w-full flex items-center gap-2 py-2.5 px-3 rounded-lg transition-all ${isActive
+                  ? "text-orange-500 bg-orange-50 font-semibold shadow-sm"
+                  : "text-gray-700 hover:text-orange-500 hover:bg-gray-50"
                 }`
               }
             >
@@ -115,15 +133,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`w-full fixed top-0 z-50 transition-all duration-500 ${
-        isSticky ? "bg-white shadow-xl" : "bg-white/98 backdrop-blur-md shadow-lg"
-      }`}
+      className={`w-full fixed top-0 z-50 transition-all duration-500 ${isSticky ? "bg-white shadow-xl" : "bg-white/98 backdrop-blur-md shadow-lg"
+        }`}
     >
       {/* Premium Top Bar */}
       <div
-        className={`bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-sm transition-all duration-500 overflow-hidden ${
-          isSticky ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
-        }`}
+        className={`bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-sm transition-all duration-500 overflow-hidden ${isSticky ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
+          }`}
       >
         <div className="hidden lg:flex justify-between items-center px-4 lg:px-8 py-2.5">
           <div className="flex items-center gap-6 text-xs">
@@ -137,18 +153,39 @@ const Navbar = () => {
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <NavLink
-              to="/login"
-              className="px-5 py-1.5 rounded-full border-2 border-white/40 hover:bg-white hover:text-purple-600 transition-all duration-300 font-medium text-sm backdrop-blur-sm"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/register"
-              className="px-5 py-1.5 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 font-semibold text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-            >
-              Register Free
-            </NavLink>
+            {!auth.loggedIn && (
+              <>
+                <NavLink
+                  to="/login"
+                  className="px-5 py-1.5 rounded-full border-2 border-white/40 hover:bg-white hover:text-purple-600 transition-all duration-300 font-medium text-sm backdrop-blur-sm"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="px-5 py-1.5 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 font-semibold text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
+                  Register Free
+                </NavLink>
+              </>
+            )}
+            {auth.loggedIn && (
+              <>
+                <NavLink
+                  to="/profile"
+                  className="px-5 py-1.5 rounded-full bg-green-500 text-white font-medium"
+                >
+                  Profile
+                </NavLink>
+                <NavLink
+                  to="/logout"
+                  onClick={handleLogout}
+                  className="px-5 py-1.5 rounded-full bg-red-500 text-white font-medium"
+                >
+                  logout
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -182,10 +219,9 @@ const Navbar = () => {
                     <NavLink
                       to={item.link}
                       className={({ isActive }) =>
-                        `flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${
-                          isActive
-                            ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30"
-                            : "hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
+                        `flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${isActive
+                          ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30"
+                          : "hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
                         }`
                       }
                     >
@@ -194,11 +230,10 @@ const Navbar = () => {
                     </NavLink>
                   ) : (
                     <div
-                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 cursor-default ${
-                        isActive
-                          ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30"
-                          : "hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
-                      }`}
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 cursor-default ${isActive
+                        ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30"
+                        : "hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
+                        }`}
                     >
                       <span className="text-base">{item.icon}</span>
                       {item.title}
@@ -219,11 +254,10 @@ const Navbar = () => {
                             {sub.submenu?.length > 0 ? (
                               <div className="relative group/sub">
                                 <div
-                                  className={`flex items-center justify-between px-4 py-2.5 text-sm transition cursor-pointer ${
-                                    subActive
-                                      ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold"
-                                      : "text-gray-700 hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
-                                  }`}
+                                  className={`flex items-center justify-between px-4 py-2.5 text-sm transition cursor-pointer ${subActive
+                                    ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold"
+                                    : "text-gray-700 hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
+                                    }`}
                                 >
                                   <span className="flex items-center gap-2">
                                     <span className="text-base">{sub.icon}</span>
@@ -237,10 +271,9 @@ const Navbar = () => {
                                       <NavLink
                                         to={subsub.link}
                                         className={({ isActive }) =>
-                                          `w-full flex items-center gap-2 px-4 py-2.5 text-sm transition ${
-                                            isActive
-                                              ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold"
-                                              : "text-gray-700 hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
+                                          `w-full flex items-center gap-2 px-4 py-2.5 text-sm transition ${isActive
+                                            ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold"
+                                            : "text-gray-700 hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
                                           }`
                                         }
                                       >
@@ -255,10 +288,9 @@ const Navbar = () => {
                               <NavLink
                                 to={sub.link}
                                 className={({ isActive }) =>
-                                  `flex items-center gap-2 px-4 py-2.5 text-sm transition ${
-                                    isActive
-                                      ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold border-l-4 border-orange-500"
-                                      : "text-gray-700 hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50 hover:border-l-4 hover:border-orange-300"
+                                  `flex items-center gap-2 px-4 py-2.5 text-sm transition ${isActive
+                                    ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold border-l-4 border-orange-500"
+                                    : "text-gray-700 hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50 hover:border-l-4 hover:border-orange-300"
                                   }`
                                 }
                               >
@@ -279,11 +311,10 @@ const Navbar = () => {
             <li className="relative" ref={moreRef}>
               <button
                 onClick={() => setMoreOpen(!moreOpen)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${
-                  moreMenuItems.some(item => location.pathname === item.link)
-                    ? "text-white bg-gradient-to-r from-purple-500 to-indigo-500 shadow-lg shadow-purple-500/30"
-                    : "hover:text-purple-500 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50"
-                }`}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${moreMenuItems.some(item => location.pathname === item.link)
+                  ? "text-white bg-gradient-to-r from-purple-500 to-indigo-500 shadow-lg shadow-purple-500/30"
+                  : "hover:text-purple-500 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50"
+                  }`}
               >
                 <MoreHorizontal size={18} />
                 MORE
@@ -300,10 +331,9 @@ const Navbar = () => {
                         to={item.link}
                         onClick={handleMenuClose}
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 py-2.5 text-sm transition ${
-                            isActive
-                              ? "text-purple-500 bg-gradient-to-r from-purple-50 to-indigo-50 font-semibold border-l-4 border-purple-500"
-                              : "text-gray-700 hover:text-purple-500 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 hover:border-l-4 hover:border-purple-300"
+                          `flex items-center gap-2 px-4 py-2.5 text-sm transition ${isActive
+                            ? "text-purple-500 bg-gradient-to-r from-purple-50 to-indigo-50 font-semibold border-l-4 border-purple-500"
+                            : "text-gray-700 hover:text-purple-500 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 hover:border-l-4 hover:border-purple-300"
                           }`
                         }
                       >
@@ -342,11 +372,10 @@ const Navbar = () => {
                   {hasSubmenu ? (
                     <>
                       <div
-                        className={`flex justify-between items-center py-3 px-4 cursor-pointer rounded-xl transition-all ${
-                          isActive
-                            ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold shadow-sm"
-                            : "text-gray-800 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
-                        }`}
+                        className={`flex justify-between items-center py-3 px-4 cursor-pointer rounded-xl transition-all ${isActive
+                          ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold shadow-sm"
+                          : "text-gray-800 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
+                          }`}
                         onClick={() => toggleMenu(currentPath)}
                       >
                         <span className="flex items-center gap-3">
@@ -370,10 +399,9 @@ const Navbar = () => {
                       to={item.link}
                       onClick={handleMenuClose}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 py-3 px-4 rounded-xl transition-all ${
-                          isActive
-                            ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold shadow-sm border-l-4 border-orange-500"
-                            : "text-gray-800 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 hover:text-orange-500"
+                        `flex items-center gap-3 py-3 px-4 rounded-xl transition-all ${isActive
+                          ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold shadow-sm border-l-4 border-orange-500"
+                          : "text-gray-800 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 hover:text-orange-500"
                         }`
                       }
                     >
@@ -387,20 +415,41 @@ const Navbar = () => {
 
             {/* Mobile Login/Register */}
             <li className="mt-4 pt-4 border-t-2 border-gray-100 flex gap-3">
-              <NavLink
-                to="/login"
-                onClick={handleMenuClose}
-                className="flex-1 py-3 px-4 text-center border-2 border-orange-500 text-orange-500 rounded-xl hover:bg-orange-500 hover:text-white transition-all font-semibold shadow-md hover:shadow-lg"
-              >
-                Login
-              </NavLink>
-              <NavLink
-                to="/register"
-                onClick={handleMenuClose}
-                className="flex-1 py-3 px-4 text-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all font-semibold shadow-lg hover:shadow-xl"
-              >
-                Register Free
-              </NavLink>
+              {!auth.loggedIn && (
+                <>
+                  <NavLink
+                    to="/login"
+                    onClick={handleMenuClose}
+                    className="flex-1 py-3 px-4 text-center border-2 border-orange-500 text-orange-500 rounded-xl hover:bg-orange-500 hover:text-white transition-all font-semibold shadow-md hover:shadow-lg"
+                  >
+                    Login
+                  </NavLink>
+                  <NavLink
+                    to="/register"
+                    onClick={handleMenuClose}
+                    className="flex-1 py-3 px-4 text-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all font-semibold shadow-lg hover:shadow-xl"
+                  >
+                    Register Free
+                  </NavLink>
+                </>)}
+
+              {auth.loggedIn && (
+                <>
+                  <NavLink
+                    to="/profile"
+                    className="px-5 py-1.5 rounded-full bg-green-500 text-white font-medium"
+                  >
+                    Profile
+                  </NavLink>
+                  <NavLink
+                    to="/logout"
+                    onClick={handleLogout}
+                    className="px-5 py-1.5 rounded-full bg-red-500 text-white font-medium"
+                  >
+                    logout
+                  </NavLink>
+                </>
+              )}
             </li>
           </ul>
         </div>
