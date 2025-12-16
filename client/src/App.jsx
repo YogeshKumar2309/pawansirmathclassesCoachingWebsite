@@ -18,6 +18,10 @@ import Testimonials from "./pages/testimonials/Testimonials";
 import ContactUs from "./pages/contactUs/ContactUs";
 import FAQ from "./pages/faq/Faq";
 import Profile from "./pages/profile/Profile";
+import One from "./pages/One";
+import Two from "./pages/Two";
+import AdminDashboard from "./pages/Two";
+import StudentDashboard from "./pages/One";
 
 const App = () => {
   const { auth } = useAuth();
@@ -77,7 +81,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<HomeLayout />}>
         <Route index element={<Home />} />
-         <Route path="faculty" element={<Faculty/>} />
+        <Route path="faculty" element={<Faculty />} />
         <Route path="aboutUs" element={<AboutUs />} />
 
         {/* Courses Routes */}
@@ -99,18 +103,21 @@ const App = () => {
           path="register"
           element={auth.loggedIn ? <Navigate to="/" replace /> : <Register />}
         />
-     
 
-      <Route
-        path="/profile"
-        element={
-          <RequireAuth>
-            <Profile />
-          </RequireAuth>
-        }
-      />
 
-       </Route>
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        >
+          <Route path="user" element={<StudentDashboard />} />
+          <Route path="admin" element={<AdminDashboard />} />
+        </Route>
+
+      </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
