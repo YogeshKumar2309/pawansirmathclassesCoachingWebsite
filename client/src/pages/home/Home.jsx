@@ -6,15 +6,18 @@ import FeaturesSection from "../../components/user/home/FeaturesSection";
 import HeroCart from "../../components/user/home/HeroCart";
 import TestimonialsSection from "../../components/user/home/TestimonialsSection";
 
+
+
 const Home = () => {
   return (
     <div>
       <HeroCart
+         
       />
       <AboutTheTeacherSection />
       <CoursesSection />
       <FeaturesSection />
-      {/* <TestimonialsSection /> */}
+      <TestimonialsSection />
       <ContactSection />
     </div>
   )
