@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import EnquireForm from "../../components/common/EnquireForm";
 
 const faqData = [
   {
@@ -30,6 +31,7 @@ const faqData = [
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+    const [isActiveForm, setIsActiveForm] = useState(false);
 
   const toggleIndex = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -71,11 +73,15 @@ const FAQ = () => {
       <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 text-center text-white">
         <h2 className="text-2xl font-bold">Still Have Questions?</h2>
         <p className="mt-2 text-white/80">Contact us directly for more information</p>
-        <button className="mt-6 px-8 py-3 rounded-xl font-semibold text-white
+             {isActiveForm ?
+          <EnquireForm msgTitle={"Ask Questions"} submitText={"Question"}/> :  <button 
+          onClick={() => setIsActiveForm(true)}
+          className="mt-6 px-8 py-3 rounded-xl font-semibold text-white
           bg-gradient-to-r from-yellow-400 to-orange-500
           shadow-lg hover:scale-105 transition">
           Contact Now
-        </button>
+        </button>}
+       
       </div>
 
     </div>

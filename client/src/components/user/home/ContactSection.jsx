@@ -29,12 +29,13 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "support@example.com",
-      link: "mailto:support@example.com",
+      value: "yogesh12lohghat@gmail.com",
+      link: "mailto:yogesh12lohghat@gmail.com",
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-50",
       description: "Send us an email anytime"
     },
+
     {
       icon: Phone,
       title: "Phone",
@@ -48,7 +49,7 @@ const ContactSection = () => {
       icon: MapPin,
       title: "Location",
       value: "Lohaghat, India",
-      link: "https://maps.google.com/?q=Lohaghat",
+      link: "https://www.google.com/maps/place/Pawan+Sir+Maths+Classes/@29.4047302,80.0830103,16z/data=!4m6!3m5!1s0x39a0e1006b5e0a61:0xd8bb650f21d020d5!8m2!3d29.4047302!4d80.0873876!16s%2Fg%2F11wtgz67tl?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D",
       color: "from-pink-500 to-orange-500",
       bgColor: "bg-pink-50",
       description: "Visit our coaching center"
@@ -92,23 +93,23 @@ const ContactSection = () => {
               <div
                 key={index}
                 data-index={index}
-                className={`contact-card group transition-all duration-700 ${
-                  visibleCards.includes(index) 
-                    ? 'opacity-100 translate-y-0' 
+                className={`contact-card group transition-all duration-700 ${visibleCards.includes(index)
+                    ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-10'
-                }`}
+                  }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 <a
                   href={contact.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block h-full"
+                  target={contact.link.startsWith("http") ? "_blank" : "_self"}
+                  rel={contact.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="block h-full relative z-20"
                 >
+
                   <div className={`relative h-full p-8 ${contact.bgColor} backdrop-blur-xl shadow-xl rounded-3xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 hover:scale-105 border-2 border-white/50`}>
-                    
+
                     {/* Background Pattern */}
                     <div className="absolute inset-0 opacity-5">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700"></div>
@@ -137,9 +138,8 @@ const ContactSection = () => {
                       </p>
 
                       {/* External Link Icon */}
-                      <div className={`mt-4 transition-all duration-300 ${
-                        hoveredCard === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                      }`}>
+                      <div className={`mt-4 transition-all duration-300 ${hoveredCard === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+                        }`}>
                         <ExternalLink className="w-5 h-5 text-gray-400" />
                       </div>
                     </div>
@@ -155,7 +155,7 @@ const ContactSection = () => {
 
         {/* Two Column Layout: Form + Info */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          
+
           {/* Contact Form */}
           {/* <div className="bg-white/80 backdrop-blur-xl p-8 md:p-10 rounded-3xl shadow-2xl border-2 border-white/50">
             <div className="flex items-center gap-3 mb-6">
@@ -211,7 +211,7 @@ const ContactSection = () => {
           </div> */}
 
           {/* Additional Info */}
-          <div className="space-y-6">
+          {/* <div className="space-y-6">
             <div className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-xl border-2 border-white/50">
               <div className="flex items-center gap-3 mb-4">
                 <Clock className="w-6 h-6 text-purple-600" />
@@ -232,7 +232,7 @@ const ContactSection = () => {
                 </p>
               </div>
             </div>
-
+            
             <div className="bg-gradient-to-br from-purple-600 to-pink-600 p-8 rounded-3xl shadow-xl text-white">
               <h3 className="text-2xl font-bold mb-4">Quick Response</h3>
               <p className="mb-4 text-white/90">
@@ -243,7 +243,7 @@ const ContactSection = () => {
                 <span className="font-semibold">Average response time: 2 hours</span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Google Map */}

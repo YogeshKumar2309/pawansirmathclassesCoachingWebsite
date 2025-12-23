@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, ExternalLink, Code2, ChevronRight } from "lucide-r
 const footerLinks = [
     { title: "Home", link: "/" },
     { title: "Admission", link: "/admission" },
-    { title: "About Us", link: "/about-us" },
+    { title: "About Us", link: "/aboutUs" },
     { title: "Courses", link: "/courses" },
     { title: "FAQ", link: "/faq" },
 ];
@@ -16,25 +16,28 @@ const socialLinks = [
 ];
 
 const contactInfo = {
-    address: "Chanmari, Lohaghat",
+    address: "C34P+2X3 Pawan Sir Maths Classes, Chandmari, Lohaghat, Uttarakhand 262524",
     phone: "+91 98765 43210",
     email: "info@coaching.com",
 };
 
 const galleryImages = [
-    "/2.png",
-    "/2.png",
-    "/2.png",
-    "/2.png",
-    "/2.png",
-    "/2.png",
+  "https://images.unsplash.com/photo-1558021212-51b6ecfa0db9", // classroom
+  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b", // students studying
+  "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b", // group activity
+  "https://images.unsplash.com/photo-1529070538774-1843cb3265df", // lecture hall
+  "https://images.unsplash.com/photo-1519452575417-564c1401ecc0", // computer lab
+  "https://images.unsplash.com/photo-1509062522246-3755977927d7"  // campus/library
 ];
+
+
+
 
 const Footer = () => {
     const [hoveredGallery, setHoveredGallery] = useState(null);
 
     return (
-        <footer className="relative bg-gradient-to-br from-gray-100 via-gray-200 to-gray-100 text-gray-800 py-12 shadow-2xl overflow-hidden border-t border-gray-300">
+        <footer className="relative bg-gradient-to-br from-gray-100 via-gray-200 to-gray-100 text-gray-800 py-12 pb-24 md:pb-12 shadow-2xl overflow-hidden border-t border-gray-300">
             
             {/* Animated Background Pattern */}
             <div className="absolute inset-0 opacity-5">

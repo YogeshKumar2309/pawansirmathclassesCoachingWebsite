@@ -4,6 +4,7 @@ import CourseCard from "../../components/user/courses/CourseCard";
 
 const courses6to8Data = [
   {
+    id: 1,
     title: "Class 6 Foundation Course",
     category: "Class 6",
     description:
@@ -12,6 +13,7 @@ const courses6to8Data = [
     timing: "Morning / Evening",
   },
   {
+    id: 2,
     title: "Class 7 Concept Builder",
     category: "Class 7",
     description:
@@ -20,6 +22,7 @@ const courses6to8Data = [
     timing: "Evening",
   },
   {
+    id: 3,
     title: "Class 8 Advanced Basics",
     category: "Class 8",
     description:
@@ -54,20 +57,6 @@ const Courses6to8 = () => {
         </div>
       </div>
 
-      {/* Bottom CTA */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 text-center text-white">
-        <h2 className="text-2xl font-bold">
-          Give Your Child a Strong Academic Foundation
-        </h2>
-        <p className="mt-2 text-white/80">
-          Visit our center or call us for a free counseling session
-        </p>
-        <button className="mt-6 px-8 py-3 rounded-xl font-semibold 
-          bg-gradient-to-r from-yellow-400 to-orange-500 
-          text-white shadow-lg hover:scale-105 transition">
-          Book Free Demo Class
-        </button>
-      </div>
 
     </div>
   );

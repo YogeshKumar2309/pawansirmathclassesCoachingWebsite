@@ -18,10 +18,16 @@ import Testimonials from "./pages/testimonials/Testimonials";
 import ContactUs from "./pages/contactUs/ContactUs";
 import FAQ from "./pages/faq/Faq";
 import Profile from "./pages/profile/Profile";
-import One from "./pages/One";
-import Two from "./pages/Two";
 import AdminDashboard from "./pages/Two";
 import StudentDashboard from "./pages/One";
+import OurCoursesLearnMore from "./pages/ourCoursesLearnMore/OurCoursesLearnMore";
+import Math from "./components/user/ourCoursesLearnMore/Math";
+import Science from "./components/user/ourCoursesLearnMore/Science";
+import English from "./components/user/ourCoursesLearnMore/English";
+import AllSubjects from "./components/user/ourCoursesLearnMore/AllSubjects";
+import Admission from "./pages/admission/Admission";
+import AdmissionStatus from "./pages/admission/AdmissionStatus";
+import AdmissionConfirm from "./pages/admission/AdmissionConfirm";
 
 const App = () => {
   const { auth } = useAuth();
@@ -81,13 +87,28 @@ const App = () => {
     <Routes>
       <Route path="/" element={<HomeLayout />}>
         <Route index element={<Home />} />
+
+
+        <Route path="admission" element={<Admission />} />
+        <Route path="/admission/status" element={<AdmissionStatus />} />
+        <Route path="/admission/confirm/:id" element={<AdmissionConfirm />} />
         <Route path="faculty" element={<Faculty />} />
         <Route path="aboutUs" element={<AboutUs />} />
 
         {/* Courses Routes */}
-        <Route path="/courses/6-8" element={<Courses6to8 />} />
-        <Route path="/courses/9-10" element={<Courses9to10 />} />
-        <Route path="/courses/11-12" element={<Courses11to12 />} />
+        <Route path="course">
+          <Route path="6-8" element={<Courses6to8 />} />
+          <Route path="9-10" element={<Courses9to10 />} />
+          <Route path="11-12" element={<Courses11to12 />} />
+        </Route>
+
+        <Route path="courses" element={<OurCoursesLearnMore />} > {/* All courses overview */}
+          <Route index element={<Math />} />
+          <Route path="math" element={<Math />} />
+          <Route path="science" element={<Science />} />
+          <Route path="english" element={<English />} />
+          <Route path="allSubjects" element={<AllSubjects />} />
+        </Route>
 
         <Route path="schedule" element={<Schedule />} />
         <Route path="testimonials" element={<Testimonials />} />

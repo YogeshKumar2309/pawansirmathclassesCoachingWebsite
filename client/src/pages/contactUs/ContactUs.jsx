@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import EnquireForm from "../../components/common/EnquireForm";
 
 const contactData = {
   address: "123, Central Street, Your City, Pin 123456",
@@ -10,6 +11,8 @@ const contactData = {
 };
 
 const ContactUs = () => {
+
+  const [isActiveForm, setIsActiveForm] = useState(false);
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-white">
 
@@ -27,7 +30,7 @@ const ContactUs = () => {
 
       {/* Contact Info */}
       <div className="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-start">
-        
+
         {/* Info */}
         <div className="space-y-6">
           <h2 className="text-2xl font-bold text-gray-800">Reach Us</h2>
@@ -47,22 +50,21 @@ const ContactUs = () => {
             Email: <a href={`mailto:${contactData.email}`} className="text-purple-600 font-medium">{contactData.email}</a>
           </p>
 
-          <button className="mt-4 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-yellow-400 to-orange-500 shadow-lg hover:scale-105 transition">
-            Visit Our Center
-          </button>
+          <a
+            href="https://www.google.com/maps/place/Pawan+Sir+Maths+Classes/@29.4047302,80.0848127,17z/data=!4m6!3m5!1s0x39a0e1006b5e0a61:0xd8bb650f21d020d5!8m2!3d29.4047302!4d80.0873876!16s%2Fg%2F11wtgz67tl?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="mt-4 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-yellow-400 to-orange-500 shadow-lg hover:scale-105 transition">
+              Visit Our Center
+            </button>
+          </a>
+
         </div>
 
         {/* Map */}
         <div className="rounded-3xl overflow-hidden shadow-2xl">
-          <iframe
-            src={contactData.mapEmbed}
-            width="100%"
-            height="400"
-            allowFullScreen=""
-            loading="lazy"
-            className="border-0"
-            title="Coaching Institute Map"
-          ></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3475.8231149123726!2d80.08481267552943!3d29.404730175252016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sPawan%20Sir%20Maths%20Classes!5e0!3m2!1sen!2sin!4v1766493235551!5m2!1sen!2sin" width="600" height="450" style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
       </div>
@@ -75,11 +77,15 @@ const ContactUs = () => {
         <p className="mt-2 text-white/80">
           Contact us now or visit our center for more details
         </p>
-        <button className="mt-6 px-8 py-3 rounded-xl font-semibold text-white
+
+        {isActiveForm ?
+          <EnquireForm msgTitle={"Your Message"} submitText={"Enquiry"}/> : <button
+            onClick={() => setIsActiveForm(true)}
+            className="mt-6 px-8 py-3 rounded-xl font-semibold text-white
           bg-gradient-to-r from-yellow-400 to-orange-500
           shadow-lg hover:scale-105 transition">
-          Enquire Now
-        </button>
+            Enquire Now
+          </button>}
       </div>
 
     </div>

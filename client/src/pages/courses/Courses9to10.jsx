@@ -54,22 +54,7 @@ const Courses9to10 = () => {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 text-center text-white">
-        <h2 className="text-2xl font-bold">
-          Prepare for Boards with Expert Guidance
-        </h2>
-        <p className="mt-2 text-white/80">
-          Join our result-oriented batches for Class 9 & 10
-        </p>
-        <button
-          className="mt-6 px-8 py-3 rounded-xl font-semibold text-white
-          bg-gradient-to-r from-yellow-400 to-orange-500
-          shadow-lg hover:scale-105 transition"
-        >
-          Enquire Now
-        </button>
-      </div>
+      
 
     </div>
   );

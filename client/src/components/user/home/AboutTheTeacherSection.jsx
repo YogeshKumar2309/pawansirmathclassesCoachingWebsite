@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GraduationCap, Award, BookOpen, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Teacher की details
 const teacherInfo = {
@@ -11,7 +12,7 @@ const teacherInfo = {
   ],
   qualification: "B.A. in Mathematics",
   bio: "Pawan Sir believes in clear explanation, personalized attention, and helping every student achieve their best results.",
-  image: "pawanSir.png",
+  image: "https://images.unsplash.com/photo-1527980965255-d3b416303d12",
   subjects: ["Math", "Science", "English", "Social Studies"],
   achievements: [
     { icon: Award, text: "500+ Students Taught", color: "from-yellow-400 to-orange-500" },
@@ -22,6 +23,8 @@ const teacherInfo = {
 
 const AboutTheTeacherSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -157,10 +160,10 @@ const AboutTheTeacherSection = () => {
 
               {/* CTA Button */}
               <div className="flex gap-4 justify-center lg:justify-start mt-4">
-                <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                  Book a Demo Class
-                </button>
-                <button className="px-6 py-3 bg-white text-purple-600 font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-purple-600">
+            
+                <button className="px-6 py-3 bg-white text-purple-600 font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-purple-600"
+                 onClick={() => navigate("/contactUs")}
+                >
                   Contact Now
                 </button>
               </div>

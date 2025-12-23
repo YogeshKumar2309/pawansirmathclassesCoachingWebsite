@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
   return (
@@ -30,11 +31,13 @@ const CourseCard = ({ course }) => {
       </div>
 
       {/* CTA */}
-      <button className="mt-6 w-full px-4 py-3 rounded-xl font-semibold text-white 
+      <Link
+      to={`/admission/confirm/${course.id}`}
+      className="mt-6 w-full px-4 py-3 rounded-xl font-semibold text-white 
         bg-gradient-to-r from-yellow-400 to-orange-500 
         shadow-lg hover:scale-105 transition">
-        Enquire Now
-      </button>
+     Admission Now
+      </Link>
     </div>
   );
 };

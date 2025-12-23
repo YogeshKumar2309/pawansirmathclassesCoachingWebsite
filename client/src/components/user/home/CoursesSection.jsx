@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BookOpen, Users, Clock, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 
 // Courses data
 const courses = [
@@ -10,7 +12,8 @@ const courses = [
     color: "from-orange-400 to-pink-500",
     features: ["Problem Solving", "Practice Sets", "Board Exam Focus"],
     students: "150+",
-    duration: "Full Year"
+    duration: "Full Year",
+    link: "/courses/math"
   },
   {
     title: "Science",
@@ -19,7 +22,8 @@ const courses = [
     color: "from-purple-500 to-indigo-600",
     features: ["Practical Knowledge", "Lab Experiments", "Concept Clarity"],
     students: "120+",
-    duration: "Full Year"
+    duration: "Full Year",
+    link: "/courses/science"
   },
   {
     title: "English",
@@ -28,7 +32,8 @@ const courses = [
     color: "from-yellow-400 to-orange-500",
     features: ["Grammar", "Writing Skills", "Speaking Practice"],
     students: "100+",
-    duration: "Full Year"
+    duration: "Full Year",
+    link: "/courses/english"
   },
   {
     title: "All Subjects (up to Class 8)",
@@ -37,13 +42,18 @@ const courses = [
     color: "from-pink-400 to-purple-500",
     features: ["Complete Package", "All Subjects", "Foundation Building"],
     students: "200+",
-    duration: "Full Year"
+    duration: "Full Year",
+    link: "/courses/allSubjects"
   },
 ];
+
 
 const CoursesSection = () => {
   const [visibleCards, setVisibleCards] = useState([]);
   const [hoveredCard, setHoveredCard] = useState(null);
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -152,10 +162,14 @@ const CoursesSection = () => {
                   </div>
 
                   {/* CTA Button */}
-                  <button className="mt-4 w-full py-2.5 px-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl font-semibold text-white flex items-center justify-center gap-2 group-hover:gap-3 transition-all duration-300 border border-white/30">
-                    Learn More
-                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
+                 <button
+  onClick={() => navigate(course.link)}
+  className="mt-4 w-full py-2.5 px-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl font-semibold text-white flex items-center justify-center gap-2 group-hover:gap-3 transition-all duration-300 border border-white/30"
+>
+  Learn More
+  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+</button>
+
                 </div>
 
                 {/* Shine Effect */}
@@ -172,16 +186,7 @@ const CoursesSection = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-gray-600 mb-6 text-lg">
-            Can't find what you're looking for?
-          </p>
-          <button className="px-8 py-4 bg-gradient-to-r from-orange-500 to-pink-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center gap-2">
-            Contact Us for Custom Courses
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
+      
       </div>
     </section>
   );

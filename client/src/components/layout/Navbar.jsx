@@ -531,6 +531,7 @@ const Navbar = () => {
 
   const mainMenuItems = [
     { title: "HOME", link: "/", icon: <Home size={20} />, emoji: "🏠" },
+     { title: "ADMISSION", link: "/admission", icon: "📝" },
     { title: "FACULTY", link: "/faculty", icon: <Users size={20} />, emoji: "👨‍🏫" },
     { title: "ABOUT", link: "/aboutUs", icon: <Info size={20} />, emoji: "ℹ️" },
     {
@@ -538,9 +539,10 @@ const Navbar = () => {
       icon: <BookOpen size={20} />,
       emoji: "📚",
       submenu: [
-        { title: "Class 6-8", link: "/courses/6-8", icon: "🎓" },
-        { title: "Class 9-10", link: "/courses/9-10", icon: "📖" },
-        { title: "Class 11-12", link: "/courses/11-12", icon: "🏆" },
+        { title: "Courses", link: "/courses", icon: "📚" }, 
+       { title: "Class 6-8", link: "/course/6-8", icon: "🎓" },
+        { title: "Class 9-10", link: "/course/9-10", icon: "📖" },
+        { title: "Class 11-12", link: "/course/11-12", icon: "🏆" },
       ],
     },
   ];
@@ -618,22 +620,23 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 z-50 transition-all duration-500 ${isSticky ? "bg-white shadow-xl" : "bg-white/98 backdrop-blur-md shadow-lg"
-          }`}
+        className={`w-full fixed top-0 z-50 transition-all duration-500 bg-gradient-to-r from-orange-50 via-pink-50 to-purple-50 shadow-md ${
+          isSticky ? "md:shadow-xl" : ""
+        }`}
       >
         {/* Premium Top Bar - Hidden on mobile and tablet */}
         <div
-          className={`bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-sm transition-all duration-500 overflow-hidden ${isSticky ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
+          className={`bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-sm transition-all duration-500 overflow-hidden ${isSticky ? "max-h-0 opacity-0" : "max-h-10 opacity-100"
             }`}
         >
-          <div className="hidden lg:flex justify-between items-center px-4 lg:px-8 py-2.5">
-            <div className="flex items-center gap-6 text-xs">
+          <div className="hidden lg:flex justify-between items-center px-4 lg:px-8 py-2">
+            <div className="flex items-center gap-6 text-xs font-medium">
               <span className="flex items-center gap-2 opacity-90">
-                <Phone size={14} />
+                <Phone size={13} />
                 +91 98765 43210
               </span>
               <span className="flex items-center gap-2 opacity-90">
-                <Mail size={14} />
+                <Mail size={13} />
                 info@pawansirmath.com
               </span>
             </div>
@@ -642,13 +645,13 @@ const Navbar = () => {
                 <>
                   <NavLink
                     to="/login"
-                    className="px-5 py-1.5 rounded-full border-2 border-white/40 hover:bg-white hover:text-purple-600 transition-all duration-300 font-medium text-sm backdrop-blur-sm"
+                    className="px-4 py-1 rounded-full border-2 border-white/40 hover:bg-white hover:text-purple-600 transition-all duration-300 font-semibold text-xs backdrop-blur-sm"
                   >
                     Login
                   </NavLink>
                   <NavLink
                     to="/register"
-                    className="px-5 py-1.5 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 font-semibold text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    className="px-4 py-1 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 font-bold text-xs shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
                     Register Free
                   </NavLink>
@@ -658,14 +661,14 @@ const Navbar = () => {
                 <>
                   <NavLink
                     to="/profile"
-                    className="px-5 py-1.5 rounded-full bg-green-500 hover:bg-green-600 text-white font-medium transition-all"
+                    className="px-4 py-1 rounded-full bg-green-500 hover:bg-green-600 text-white font-semibold text-xs transition-all"
                   >
                     Profile
                   </NavLink>
                   <NavLink
                     to="/logout"
                     onClick={handleLogout}
-                    className="px-5 py-1.5 rounded-full bg-red-500 hover:bg-red-600 text-white font-medium transition-all"
+                    className="px-4 py-1 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold text-xs transition-all"
                   >
                     Logout
                   </NavLink>
@@ -677,25 +680,25 @@ const Navbar = () => {
 
         {/* Main Navbar */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-          <div className="flex items-center justify-between py-2 sm:py-3">
+          <div className="flex items-center justify-between py-2 lg:py-2.5">
             {/* Premium Logo - Responsive sizing */}
             <NavLink to="/" className="flex items-center gap-2 sm:gap-3 group">
               <img
                 src="/logo/logo.png"
                 alt="Logo"
-                className="object-contain w-14 sm:w-16 md:w-20"
+                className="object-contain w-12 sm:w-14 md:w-16 lg:w-[70px]"
               />
 
               <div>
-                <h1 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-pink-500 transition-all leading-tight">
+                <h1 className="font-extrabold text-sm sm:text-base md:text-lg lg:text-xl bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-pink-500 transition-all leading-tight">
                   Pawan Sir Math's Classes
                 </h1>
-                <p className="text-[10px] sm:text-xs text-gray-500 font-semibold tracking-wide hidden sm:block">Excellence in Education ✨</p>
+                <p className="text-[9px] sm:text-[10px] lg:text-xs text-gray-600 font-bold tracking-wide hidden sm:block">Excellence in Education ✨</p>
               </div>
             </NavLink>
 
             {/* Desktop Menu - Hidden on mobile and tablet */}
-            <ul className="hidden lg:flex items-center gap-2 font-semibold text-gray-700 uppercase text-sm">
+            <ul className="hidden lg:flex items-center gap-1.5 font-bold text-gray-800 uppercase text-sm">
               {mainMenuItems.map((item, i) => {
                 const isActive = isPathActive(item);
                 return (
@@ -704,9 +707,9 @@ const Navbar = () => {
                       <NavLink
                         to={item.link}
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${isActive
+                          `flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all duration-300 ${isActive
                             ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30"
-                            : "hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
+                            : "hover:text-orange-600 hover:bg-white/80"
                           }`
                         }
                       >
@@ -715,9 +718,9 @@ const Navbar = () => {
                       </NavLink>
                     ) : (
                       <div
-                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 cursor-default ${isActive
+                        className={`flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all duration-300 cursor-default ${isActive
                           ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30"
-                          : "hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50"
+                          : "hover:text-orange-600 hover:bg-white/80"
                           }`}
                       >
                         <span className="text-base">{item.emoji}</span>
@@ -737,8 +740,8 @@ const Navbar = () => {
                             <NavLink
                               to={sub.link}
                               className={({ isActive }) =>
-                                `flex items-center gap-2 px-4 py-2.5 text-sm transition ${isActive
-                                  ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold border-l-4 border-orange-500"
+                                `flex items-center gap-2 px-4 py-2.5 text-sm font-semibold transition ${isActive
+                                  ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 border-l-4 border-orange-500"
                                   : "text-gray-700 hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50 hover:border-l-4 hover:border-orange-300"
                                 }`
                               }
@@ -758,9 +761,9 @@ const Navbar = () => {
               <li className="relative" ref={moreRef}>
                 <button
                   onClick={() => setMoreOpen(!moreOpen)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${moreMenuItems.some(item => location.pathname === item.link)
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all duration-300 ${moreMenuItems.some(item => location.pathname === item.link)
                     ? "text-white bg-gradient-to-r from-purple-500 to-indigo-500 shadow-lg shadow-purple-500/30"
-                    : "hover:text-purple-500 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50"
+                    : "hover:text-purple-600 hover:bg-white/80"
                     }`}
                 >
                   <MoreHorizontal size={18} />
@@ -778,8 +781,8 @@ const Navbar = () => {
                           to={item.link}
                           onClick={handleMenuClose}
                           className={({ isActive }) =>
-                            `flex items-center gap-2 px-4 py-2.5 text-sm transition ${isActive
-                              ? "text-purple-500 bg-gradient-to-r from-purple-50 to-indigo-50 font-semibold border-l-4 border-purple-500"
+                            `flex items-center gap-2 px-4 py-2.5 text-sm font-semibold transition ${isActive
+                              ? "text-purple-500 bg-gradient-to-r from-purple-50 to-indigo-50 border-l-4 border-purple-500"
                               : "text-gray-700 hover:text-purple-500 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 hover:border-l-4 hover:border-purple-300"
                             }`
                           }
@@ -796,7 +799,7 @@ const Navbar = () => {
 
             {/* Tablet Menu Button - Visible on tablet only */}
             <button
-              className="hidden md:block lg:hidden text-gray-800 p-2 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50 transition-all"
+              className="hidden md:block lg:hidden text-gray-800 p-2 rounded-xl hover:bg-white/80 transition-all"
               onClick={() => setMenuOpen(!menuOpen)}
             >
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -819,8 +822,8 @@ const Navbar = () => {
                     {hasSubmenu ? (
                       <>
                         <div
-                          className={`flex justify-between items-center py-3 px-4 cursor-pointer rounded-xl transition-all ${isActive
-                            ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold shadow-sm"
+                          className={`flex justify-between items-center py-3 px-4 cursor-pointer rounded-xl transition-all font-bold ${isActive
+                            ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 shadow-sm"
                             : "text-gray-800 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
                             }`}
                           onClick={() => toggleMenu(currentPath)}
@@ -846,8 +849,8 @@ const Navbar = () => {
                         to={item.link}
                         onClick={handleMenuClose}
                         className={({ isActive }) =>
-                          `flex items-center gap-3 py-3 px-4 rounded-xl transition-all ${isActive
-                            ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold shadow-sm border-l-4 border-orange-500"
+                          `flex items-center gap-3 py-3 px-4 rounded-xl transition-all font-bold ${isActive
+                            ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 shadow-sm border-l-4 border-orange-500"
                             : "text-gray-800 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 hover:text-orange-500"
                           }`
                         }
@@ -867,14 +870,14 @@ const Navbar = () => {
                     <NavLink
                       to="/login"
                       onClick={handleMenuClose}
-                      className="flex-1 py-3 px-4 text-center border-2 border-orange-500 text-orange-500 rounded-xl hover:bg-orange-500 hover:text-white transition-all font-semibold shadow-md hover:shadow-lg"
+                      className="flex-1 py-3 px-4 text-center border-2 border-orange-500 text-orange-500 rounded-xl hover:bg-orange-500 hover:text-white transition-all font-bold shadow-md hover:shadow-lg"
                     >
                       Login
                     </NavLink>
                     <NavLink
                       to="/register"
                       onClick={handleMenuClose}
-                      className="flex-1 py-3 px-4 text-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all font-semibold shadow-lg hover:shadow-xl"
+                      className="flex-1 py-3 px-4 text-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all font-bold shadow-lg hover:shadow-xl"
                     >
                       Register Free
                     </NavLink>
@@ -886,14 +889,14 @@ const Navbar = () => {
                     <NavLink
                       to="/profile"
                       onClick={handleMenuClose}
-                      className="flex-1 py-2 text-center rounded-xl bg-green-500 hover:bg-green-600 text-white font-medium transition-all"
+                      className="flex-1 py-2 text-center rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold transition-all"
                     >
                       Profile
                     </NavLink>
                     <NavLink
                       to="/logout"
                       onClick={handleLogout}
-                      className="flex-1 py-2 text-center rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium transition-all"
+                      className="flex-1 py-2 text-center rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold transition-all"
                     >
                       Logout
                     </NavLink>
@@ -928,7 +931,7 @@ const Navbar = () => {
                       <div className={`${isActive || mobileSubmenuOpen ? "scale-110" : ""} transition-transform`}>
                         {item.icon}
                       </div>
-                      <span className="text-[9px] sm:text-[10px] font-semibold mt-0.5 uppercase leading-tight text-center">
+                      <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase leading-tight text-center">
                         {item.title}
                       </span>
                       <ChevronDown
@@ -957,14 +960,14 @@ const Navbar = () => {
                               to={sub.link}
                               onClick={handleMenuClose}
                               className={({ isActive }) =>
-                                `flex items-center gap-3 px-4 py-3 text-sm transition ${isActive
-                                  ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 font-semibold border-l-4 border-orange-500"
+                                `flex items-center gap-3 px-4 py-3 text-sm font-semibold transition ${isActive
+                                  ? "text-orange-500 bg-gradient-to-r from-orange-50 to-pink-50 border-l-4 border-orange-500"
                                   : "text-gray-700 hover:text-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50 active:bg-orange-50"
                                 }`
                               }
                             >
                               <span className="text-xl">{sub.icon}</span>
-                              <span className="font-medium">{sub.title}</span>
+                              <span className="font-bold">{sub.title}</span>
                             </NavLink>
                           ))}
                         </div>
@@ -987,7 +990,7 @@ const Navbar = () => {
                   <div className={`${isActive ? "scale-110" : ""} transition-transform`}>
                     {item.icon}
                   </div>
-                  <span className="text-[9px] sm:text-[10px] font-semibold mt-0.5 uppercase leading-tight text-center">
+                  <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase leading-tight text-center">
                     {item.title}
                   </span>
                 </NavLink>
@@ -1010,7 +1013,7 @@ const Navbar = () => {
                   <div className={`${isActive ? "scale-110" : ""} transition-transform`}>
                     {item.icon}
                   </div>
-                  <span className="text-[9px] sm:text-[10px] font-semibold mt-0.5 uppercase leading-tight text-center">
+                  <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase leading-tight text-center">
                     {item.title}
                   </span>
                 </NavLink>
@@ -1027,7 +1030,7 @@ const Navbar = () => {
                   <div className="w-5 h-5 flex items-center justify-center rounded-full border-2 border-current">
                     <span className="text-xs font-bold">→</span>
                   </div>
-                  <span className="text-[9px] sm:text-[10px] font-semibold mt-0.5 uppercase">Login</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase">Login</span>
                 </NavLink>
                 <NavLink
                   to="/register"
@@ -1036,7 +1039,7 @@ const Navbar = () => {
                   <div className="w-5 h-5 flex items-center justify-center">
                     <span className="text-base font-bold">+</span>
                   </div>
-                  <span className="text-[9px] sm:text-[10px] font-semibold mt-0.5 uppercase">Register</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase">Register</span>
                 </NavLink>
               </>
             )}
@@ -1048,7 +1051,7 @@ const Navbar = () => {
                   className="flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all bg-green-500 text-white shadow-md active:shadow-lg"
                 >
                   <Users size={18} />
-                  <span className="text-[9px] sm:text-[10px] font-semibold mt-0.5 uppercase">Profile</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase">Profile</span>
                 </NavLink>
                 <NavLink
                   to="/logout"
@@ -1056,7 +1059,7 @@ const Navbar = () => {
                   className="flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all bg-red-500 text-white shadow-md active:shadow-lg"
                 >
                   <X size={18} />
-                  <span className="text-[9px] sm:text-[10px] font-semibold mt-0.5 uppercase">Logout</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase">Logout</span>
                 </NavLink>
               </>
             )}
