@@ -17,9 +17,8 @@ import Schedule from "./pages/schedule/Schedule";
 import Testimonials from "./pages/testimonials/Testimonials";
 import ContactUs from "./pages/contactUs/ContactUs";
 import FAQ from "./pages/faq/Faq";
-import Profile from "./pages/profile/Profile";
 import AdminDashboard from "./pages/Two";
-import StudentDashboard from "./pages/One";
+import StudentDashboard1 from "./pages/One";
 import OurCoursesLearnMore from "./pages/ourCoursesLearnMore/OurCoursesLearnMore";
 import Math from "./components/user/ourCoursesLearnMore/Math";
 import Science from "./components/user/ourCoursesLearnMore/Science";
@@ -28,6 +27,14 @@ import AllSubjects from "./components/user/ourCoursesLearnMore/AllSubjects";
 import Admission from "./pages/admission/Admission";
 import AdmissionStatus from "./pages/admission/AdmissionStatus";
 import AdmissionConfirm from "./pages/admission/AdmissionConfirm";
+import { Toaster } from "react-hot-toast";
+import Dashboard from "./pages/studentDashboard/Dashboard";
+import StudentProfileLayout from "./layout/StudentProfileLayout";
+import EnrolledCourses from "./pages/studentDashboard/EnrolledCourses";
+import StudyMaterial from "./pages/studentDashboard/StudyMaterial";
+import MarksAndHistory from "./pages/studentDashboard/MarksAndHistory";
+import NoticesAndAnnouncements from "./pages/studentDashboard/NoticesAndAnnouncements";
+import StudentProfile from "./pages/studentDashboard/StudentProfile";
 
 const App = () => {
   const { auth } = useAuth();
@@ -84,64 +91,86 @@ const App = () => {
   console.log("📄 Rendering routes");
 
   return (
-    <Routes>
-      <Route path="/" element={<HomeLayout />}>
-        <Route index element={<Home />} />
+    <>
+      <Toaster position="top-right" reverseOrder={false} />
+      <Routes>
+        <Route path="/" element={<HomeLayout />}>
+          <Route index element={<Home />} />
 
 
-        <Route path="admission" element={<Admission />} />
-        <Route path="/admission/status" element={<AdmissionStatus />} />
-        <Route path="/admission/confirm/:id" element={<AdmissionConfirm />} />
-        <Route path="faculty" element={<Faculty />} />
-        <Route path="aboutUs" element={<AboutUs />} />
+          <Route path="admission" element={<Admission />} />
+          <Route path="/admission/status" element={<AdmissionStatus />} />
+          <Route path="/admission/confirm/:id" element={<AdmissionConfirm />} />
+          <Route path="faculty" element={<Faculty />} />
+          <Route path="aboutUs" element={<AboutUs />} />
 
-        {/* Courses Routes */}
-        <Route path="course">
-          <Route path="6-8" element={<Courses6to8 />} />
-          <Route path="9-10" element={<Courses9to10 />} />
-          <Route path="11-12" element={<Courses11to12 />} />
+          {/* Courses Routes */}
+          <Route path="course">
+            <Route path="6-8" element={<Courses6to8 />} />
+            <Route path="9-10" element={<Courses9to10 />} />
+            <Route path="11-12" element={<Courses11to12 />} />
+          </Route>
+
+          <Route path="courses" element={<OurCoursesLearnMore />} > {/* All courses overview */}
+            <Route index element={<Math />} />
+            <Route path="math" element={<Math />} />
+            <Route path="science" element={<Science />} />
+            <Route path="english" element={<English />} />
+            <Route path="allSubjects" element={<AllSubjects />} />
+          </Route>
+
+          <Route path="schedule" element={<Schedule />} />
+          <Route path="testimonials" element={<Testimonials />} />
+          <Route path="gallery" element={<Gallery />} />
+          <Route path="contactUs" element={<ContactUs />} />
+          <Route path="faq" element={<FAQ />} />
+
+          <Route
+            path="login"
+            element={auth.loggedIn ? <Navigate to="/" replace /> : <Login />}
+          />
+          <Route
+            path="register"
+            element={auth.loggedIn ? <Navigate to="/" replace /> : <Register />}
+          />
         </Route>
-
-        <Route path="courses" element={<OurCoursesLearnMore />} > {/* All courses overview */}
-          <Route index element={<Math />} />
-          <Route path="math" element={<Math />} />
-          <Route path="science" element={<Science />} />
-          <Route path="english" element={<English />} />
-          <Route path="allSubjects" element={<AllSubjects />} />
-        </Route>
-
-        <Route path="schedule" element={<Schedule />} />
-        <Route path="testimonials" element={<Testimonials />} />
-        <Route path="gallery" element={<Gallery />} />
-        <Route path="contactUs" element={<ContactUs />} />
-        <Route path="faq" element={<FAQ />} />
-
-        <Route
-          path="login"
-          element={auth.loggedIn ? <Navigate to="/" replace /> : <Login />}
-        />
-        <Route
-          path="register"
-          element={auth.loggedIn ? <Navigate to="/" replace /> : <Register />}
-        />
 
 
         <Route
           path="/profile"
           element={
             <RequireAuth>
-              <Profile />
+              <StudentProfileLayout />
             </RequireAuth>
           }
         >
-          <Route path="user" element={<StudentDashboard />} />
+          {/* default /profile */}
+          <Route index element={<Dashboard />} />
+
+          {/* Dashboard */}
+          <Route path="dashboard" element={<Dashboard />} />
+
+          {/* My Courses */}
+          <Route path="courses" element={<EnrolledCourses />} />
+          <Route path="material" element={<StudyMaterial />} />
+
+          {/* Marks */}
+          <Route path="marks" element={<MarksAndHistory />} />
+
+          {/* Notices */}
+          <Route path="notices" element={<NoticesAndAnnouncements />} />
+
+          {/* Profile */}
+          <Route path="user" element={<StudentProfile />} />
+
+
+          <Route path="user" element={<StudentDashboard1 />} />
           <Route path="admin" element={<AdminDashboard />} />
         </Route>
 
-      </Route>
-
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 };
 

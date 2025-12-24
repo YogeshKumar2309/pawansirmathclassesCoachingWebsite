@@ -5,6 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useRegister } from "../../hooks/api/useRegister.js"
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useAuthMe } from "../../hooks/api/useAuthMe.js";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,31 +22,39 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const handleRegister = async (formData) => {
-    try {
-      const response = await registerUser(formData);
-      if (response) {
+ const handleRegister = async (formData) => {
+  const toastId = toast.loading("Creating your account... ⏳");
 
-        // 2️⃣ /me call → real auth data
-        const meData = await getMe();
+  try {
+    // 1️⃣ Register API
+    const res = await registerUser(formData);
 
+    toast.success(res.message || "Registration successful 🎉", {
+      id: toastId,
+    });
 
-        // 3️⃣ AuthContext update
-        setAuth({
-          user: meData.user,
-          loggedIn: true,
-          loading: false,
-        });
+    // 2️⃣ /me call → real auth data (session confirm)
+    const meData = await getMe();
 
-        // 4️⃣ Redirect to home
-        navigate("/", { replace: true });
-      }
+    // 3️⃣ Update AuthContext
+    setAuth({
+      user: meData.user,
+      loggedIn: true,
+      loading: false,
+    });
 
+    // 4️⃣ Redirect
+    navigate("/", { replace: true });
 
-    } catch (error) {
-      console.error("Registration failed:", error);
-    }
-  };
+  } catch (err) {
+    toast.error(
+      err?.response?.data?.message || err.message || "Registration failed ❌",
+      { id: toastId }
+    );
+    console.error("Registration failed:", err);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 px-5">
@@ -120,10 +129,11 @@ const Register = () => {
           </div>
 
           <button
+            disabled={loading}
             type="submit"
             className="w-full py-3 bg-gradient-to-r from-orange-500 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:scale-[1.02] transition"
           >
-            Register
+            {loading ? "Registering..." : "        Register"}
           </button>
         </form>
 

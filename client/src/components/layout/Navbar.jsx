@@ -19,7 +19,7 @@
 //       try {
 //         const res = await logoutUser();
 //         console.log(res, "handleLogout");
-        
+
 //         if(res) {
 //           alert("logut succesfully!");
 //         }
@@ -482,7 +482,7 @@
 
 
 import React, { useState, useEffect, useRef } from "react";
-import { Menu, X, ChevronDown, ChevronUp, MoreHorizontal, Phone, Mail, Home, Users, BookOpen, Info, Calendar, Star, Image as ImageIcon, MessageCircle, HelpCircle } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronUp, MoreHorizontal, Phone, Mail, Home, Users, BookOpen, Info, Calendar, Star, Image as ImageIcon, MessageCircle, HelpCircle, FileText } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useLogout } from "../../hooks/api/useLogout";
@@ -497,20 +497,20 @@ const Navbar = () => {
   const moreRef = useRef(null);
   const { auth } = useAuth();
 
-  const {logoutUser} = useLogout();
+  const { logoutUser } = useLogout();
 
   const handleLogout = async () => {
-      try {
-        const res = await logoutUser();
-        console.log(res, "handleLogout");
-        
-        if(res) {
-          alert("logout successfully!");
-        }
-      } catch (error) {
-        console.log(error.message)
-        alert("try again",error);
+    try {
+      const res = await logoutUser();
+      console.log(res, "handleLogout");
+
+      if (res) {
+        alert("logout successfully!");
       }
+    } catch (error) {
+      console.log(error.message)
+      alert("try again", error);
+    }
   }
 
   useEffect(() => {
@@ -531,7 +531,7 @@ const Navbar = () => {
 
   const mainMenuItems = [
     { title: "HOME", link: "/", icon: <Home size={20} />, emoji: "🏠" },
-     { title: "ADMISSION", link: "/admission", icon: "📝" },
+    { title: "ADMISSION", link: "/admission", icon: <FileText size={20} />, emoji: "📝" },
     { title: "FACULTY", link: "/faculty", icon: <Users size={20} />, emoji: "👨‍🏫" },
     { title: "ABOUT", link: "/aboutUs", icon: <Info size={20} />, emoji: "ℹ️" },
     {
@@ -539,8 +539,8 @@ const Navbar = () => {
       icon: <BookOpen size={20} />,
       emoji: "📚",
       submenu: [
-        { title: "Courses", link: "/courses", icon: "📚" }, 
-       { title: "Class 6-8", link: "/course/6-8", icon: "🎓" },
+        { title: "Courses", link: "/courses", icon: "📚" },
+        { title: "Class 6-8", link: "/course/6-8", icon: "🎓" },
         { title: "Class 9-10", link: "/course/9-10", icon: "📖" },
         { title: "Class 11-12", link: "/course/11-12", icon: "🏆" },
       ],
@@ -620,9 +620,8 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 z-50 transition-all duration-500 bg-gradient-to-r from-orange-50 via-pink-50 to-purple-50 shadow-md ${
-          isSticky ? "md:shadow-xl" : ""
-        }`}
+        className={`w-full fixed top-0 z-50 transition-all duration-500 bg-gradient-to-r from-orange-50 via-pink-50 to-purple-50 shadow-md ${isSticky ? "md:shadow-xl" : ""
+          }`}
       >
         {/* Premium Top Bar - Hidden on mobile and tablet */}
         <div
@@ -633,11 +632,11 @@ const Navbar = () => {
             <div className="flex items-center gap-6 text-xs font-medium">
               <span className="flex items-center gap-2 opacity-90">
                 <Phone size={13} />
-                +91 98765 43210
+                +91 79062 54588
               </span>
               <span className="flex items-center gap-2 opacity-90">
                 <Mail size={13} />
-                info@pawansirmath.com
+                pawansirmathsclasses1@gmail.com
               </span>
             </div>
             <div className="flex items-center gap-3">
@@ -704,18 +703,21 @@ const Navbar = () => {
                 return (
                   <li key={i} className="relative group">
                     {item.link ? (
-                      <NavLink
-                        to={item.link}
-                        className={({ isActive }) =>
-                          `flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all duration-300 ${isActive
-                            ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30"
-                            : "hover:text-orange-600 hover:bg-white/80"
-                          }`
-                        }
-                      >
-                        <span className="text-base">{item.emoji}</span>
-                        {item.title}
-                      </NavLink>
+                      <>
+                        <NavLink
+                          to={item.link}
+                          className={({ isActive }) =>
+                            `flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all duration-300 ${isActive
+                              ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30"
+                              : "hover:text-orange-600 hover:bg-white/80"
+                            }`
+                          }
+                        >
+                          <span className="text-base">{item.emoji}</span>
+                          {item.title}
+                        </NavLink>
+
+                      </>
                     ) : (
                       <div
                         className={`flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all duration-300 cursor-default ${isActive
@@ -804,6 +806,41 @@ const Navbar = () => {
             >
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
+
+            {auth.loggedIn ? (
+              <>
+                <NavLink
+                  to="/profile"
+                  className="flex md:hidden flex-col items-center justify-center
+                        min-w-[60px] sm:min-w-[70px]
+                        px-2 py-2 rounded-xl
+                        text-white font-semibold
+                        bg-gradient-to-br from-orange-400 to-pink-500
+                        shadow-md hover:shadow-lg
+                        hover:scale-105 active:scale-95
+                        transition-all duration-300"
+                >
+                  <Users size={18} />
+                  <span className="text-[9px] sm:text-[10px] mt-0.5 uppercase">
+                    Profile
+                  </span>
+                </NavLink>
+              </>) : (
+              <div className="flex md:hidden">
+                <NavLink
+                  to="/login"
+                  className="px-4 py-1 rounded-full border-2 border-white/40 hover:bg-white hover:text-purple-600 transition-all duration-300 font-semibold text-xs backdrop-blur-sm"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="px-4 py-1 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 font-bold text-xs shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
+                  Register Free
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
 
@@ -916,17 +953,16 @@ const Navbar = () => {
             {mainMenuItems.map((item, idx) => {
               const isActive = location.pathname === item.link;
               const hasSubmenu = item.submenu && item.submenu.length > 0;
-              
+
               if (hasSubmenu) {
                 return (
                   <div key={idx} className="relative">
                     <button
                       onClick={() => setMobileSubmenuOpen(!mobileSubmenuOpen)}
-                      className={`flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all ${
-                        isActive || mobileSubmenuOpen
-                          ? "bg-white/20 backdrop-blur-sm text-white shadow-lg"
-                          : "text-white/90 active:bg-white/10"
-                      }`}
+                      className={`flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all ${isActive || mobileSubmenuOpen
+                        ? "bg-white/20 backdrop-blur-sm text-white shadow-lg"
+                        : "text-white/90 active:bg-white/10"
+                        }`}
                     >
                       <div className={`${isActive || mobileSubmenuOpen ? "scale-110" : ""} transition-transform`}>
                         {item.icon}
@@ -939,16 +975,16 @@ const Navbar = () => {
                         className={`mt-0.5 transition-transform ${mobileSubmenuOpen ? "rotate-180" : ""}`}
                       />
                     </button>
-                    
+
                     {/* Mobile Submenu Popup */}
                     {mobileSubmenuOpen && (
                       <>
                         {/* Backdrop */}
-                        <div 
+                        <div
                           className="fixed inset-0 bg-black/20 z-40"
                           onClick={handleMenuClose}
                         />
-                        
+
                         {/* Submenu */}
                         <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-2xl py-2 w-[90vw] max-w-[280px] border border-gray-100 animate-fadeIn z-50">
                           <div className="px-4 py-2 border-b border-gray-100">
@@ -976,16 +1012,15 @@ const Navbar = () => {
                   </div>
                 );
               }
-              
+
               return (
                 <NavLink
                   key={idx}
                   to={item.link}
-                  className={`flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-white/20 backdrop-blur-sm text-white shadow-lg"
-                      : "text-white/90 active:bg-white/10"
-                  }`}
+                  className={`flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all ${isActive
+                    ? "bg-white/20 backdrop-blur-sm text-white shadow-lg"
+                    : "text-white/90 active:bg-white/10"
+                    }`}
                 >
                   <div className={`${isActive ? "scale-110" : ""} transition-transform`}>
                     {item.icon}
@@ -1004,11 +1039,10 @@ const Navbar = () => {
                 <NavLink
                   key={idx}
                   to={item.link}
-                  className={`flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all ${
-                    isActive
-                      ? "bg-white/20 backdrop-blur-sm text-white shadow-lg"
-                      : "text-white/90 active:bg-white/10"
-                  }`}
+                  className={`flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all ${isActive
+                    ? "bg-white/20 backdrop-blur-sm text-white shadow-lg"
+                    : "text-white/90 active:bg-white/10"
+                    }`}
                 >
                   <div className={`${isActive ? "scale-110" : ""} transition-transform`}>
                     {item.icon}

@@ -10,15 +10,15 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-    { name: "YouTube", icon: "▶️", link: "https://youtube.com/", color: "hover:text-orange-400" },
-    { name: "Instagram", icon: "📸", link: "https://instagram.com/", color: "hover:text-pink-400" },
-    { name: "Facebook", icon: "📘", link: "https://facebook.com/", color: "hover:text-purple-400" },
+    { name: "YouTube", icon: "▶️", link: "https://www.youtube.com/@Pawan_Sir_Maths_Classes", color: "hover:text-orange-400" },
+    { name: "Instagram", icon: "📸", link: "https://www.instagram.com/pawan_sir_maths_classes", color: "hover:text-pink-400" },
+    { name: "Facebook", icon: "📘", link: "https://www.facebook.com/people/Pawan-Sir-Maths-Classes/61557091119047/", color: "hover:text-purple-400" },
 ];
 
 const contactInfo = {
     address: "C34P+2X3 Pawan Sir Maths Classes, Chandmari, Lohaghat, Uttarakhand 262524",
-    phone: "+91 98765 43210",
-    email: "info@coaching.com",
+    phone: "+91 79062 54588",
+    email: "pawansirmathsclasses1@gmail.com",
 };
 
 const galleryImages = [
@@ -127,7 +127,8 @@ const Footer = () => {
                                     className="flex items-center gap-2 group text-gray-700 hover:text-pink-600 transition-colors duration-300"
                                 >
                                     <Mail size={16} className="flex-shrink-0" />
-                                    <span>{contactInfo.email}</span>
+                                    <span className="break-words max-w-full
+">{contactInfo.email}</span>
                                 </a>
                             </div>
                         </div>

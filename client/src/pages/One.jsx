@@ -203,9 +203,11 @@ const StudentProfile = () => (
 );
 
 
+
 // --- Main Student Dashboard Component ---
-export default function StudentDashboard() {
+export default function StudentDashboard1() {
     const [currentSection, setCurrentSection] = useState('dashboard');
+
 
     const renderContent = () => {
         switch (currentSection) {

@@ -29,8 +29,8 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "yogesh12lohghat@gmail.com",
-      link: "mailto:yogesh12lohghat@gmail.com",
+      value: "pawansirmathsclasses1@gmail.com",
+      link: "mailto:pawansirmathsclasses1@gmail.com",
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-50",
       description: "Send us an email anytime"
@@ -39,8 +39,8 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Phone",
-      value: "+91 9876543210",
-      link: "tel:+919876543210",
+      value: "+91 79062 54588",
+      link: "tel:+9179062 54588",
       color: "from-blue-500 to-purple-500",
       bgColor: "bg-blue-50",
       description: "Call us for immediate help"

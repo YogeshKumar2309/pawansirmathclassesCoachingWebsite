@@ -12,7 +12,7 @@ const teacherInfo = {
   ],
   qualification: "B.A. in Mathematics",
   bio: "Pawan Sir believes in clear explanation, personalized attention, and helping every student achieve their best results.",
-  image: "https://images.unsplash.com/photo-1527980965255-d3b416303d12",
+  image: "faculty/pawansir.png",
   subjects: ["Math", "Science", "English", "Social Studies"],
   achievements: [
     { icon: Award, text: "500+ Students Taught", color: "from-yellow-400 to-orange-500" },

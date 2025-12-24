@@ -10,7 +10,7 @@ const facultyData = {
   location: "City Center",
   phone: "+919876543210",
   email: "yogesh12lohghat@gmail.com",
-  image: "https://images.unsplash.com/photo-1527980965255-d3b416303d12",
+  image: "faculty/pawansir.png",
   quote: "Teaching is not about shortcuts, it’s about building strong concepts.",
   details: [
     { label: "Experience", value: "5+ Years" },

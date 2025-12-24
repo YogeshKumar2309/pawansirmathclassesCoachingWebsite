@@ -5,10 +5,12 @@ import { Eye, EyeOff } from "lucide-react";
 import { useLogin } from "../../hooks/api/useLogin";
 import { useAuthMe } from "../../hooks/api/useAuthMe";
 import { useAuth } from "../../context/AuthContext";
+import toast from "react-hot-toast";
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { loginUser } = useLogin();
+  const { loginUser, loading } = useLogin();
   const { getMe } = useAuthMe();
   const { setAuth } = useAuth();
 
@@ -21,22 +23,32 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = async (formData) => {
+    const toastId = toast.loading("Logging in... ⏳");
+
     try {
-      const res = await loginUser(formData);
-      if (res) {
-        const meData = await getMe();
+      const res = await loginUser(formData); // ✅ API response
 
-        setAuth({
-          user: meData.user,
-          loggedIn: true,
-          loading: false,
-        })
+      console.log("res", res);
 
-        navigate("/", { replace: true });
+      toast.success(res.message || "Login successful 🎉", {
+        id: toastId,
+      });
 
-      }
-    } catch (error) {
-      console.error("Registration failed:", error);
+      const meData = await getMe();
+
+      setAuth({
+        user: meData.user,
+        loggedIn: true,
+        loading: false,
+      });
+
+      navigate("/", { replace: true });
+
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message || err.message || "Login failed ❌",
+        { id: toastId }
+      );
     }
   };
 
@@ -90,10 +102,14 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-orange-500 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:scale-[1.02] transition"
+            disabled={loading}
+            className="w-full py-3 bg-gradient-to-r from-orange-500 to-pink-600
+  text-white font-bold rounded-xl shadow-lg
+  hover:scale-[1.02] transition disabled:opacity-60"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
+
         </form>
 
         <p className="text-center mt-5 text-gray-700">
