@@ -35,17 +35,12 @@ import StudyMaterial from "./pages/studentDashboard/StudyMaterial";
 import MarksAndHistory from "./pages/studentDashboard/MarksAndHistory";
 import NoticesAndAnnouncements from "./pages/studentDashboard/NoticesAndAnnouncements";
 import StudentProfile from "./pages/studentDashboard/StudentProfile";
+import Loading from "./components/common/Loading";
 
 const App = () => {
   const { auth } = useAuth();
   const hasRedirected = useRef(false);
 
-  console.log("🎯 App render:", {
-    loading: auth.loading,
-    loggedIn: auth.loggedIn,
-    role: auth.user?.role,
-    hasRedirected: hasRedirected.current
-  });
 
   // ✅ Admin redirect
   useEffect(() => {
@@ -70,20 +65,20 @@ const App = () => {
 
   // Loading state
   if (auth.loading) {
-    console.log("⏳ Showing loading screen");
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div>Checking authentication...</div>
-      </div>
+      <>
+        {/* Checking authentication... */}
+        < Loading />
+      </>
     );
   }
 
   // Admin redirect screen
   if (auth.loggedIn && auth.user?.role === "admin") {
-    console.log("👨‍💼 Showing admin redirect screen");
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div>Redirecting to admin panel...</div>
+     {/* Redirecting to admin panel... */}
+     <Loading/>
       </div>
     );
   }

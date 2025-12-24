@@ -15,7 +15,7 @@ const heroData = [
     title: "Board Exam Preparation",
     description:
       "Strong foundation and exam-oriented preparation for Class 6–12 board exams.",
-    image: "1.png",
+    image: "logo/logo1.png",
     ctaText: "Explore Courses",
     ctaLink: "/course/11-12",
   },

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+
 const COLORS = {
   SidebarBg: "bg-gradient-to-b from-indigo-900 via-indigo-800 to-purple-900",
   ActiveBg: "bg-gradient-to-r from-purple-600 to-pink-600",
@@ -21,6 +22,8 @@ const COLORS = {
 
 const StudentSidebar = ({ onClose, isMobile }) => {
   const [showFullMenu, setShowFullMenu] = useState(false);
+
+
 
   const navItems = [
     { name: "Dashboard", icon: Home, to: "/profile/dashboard" },
@@ -36,6 +39,7 @@ const StudentSidebar = ({ onClose, isMobile }) => {
     const mainNavItems = [
       { name: "Home", icon: Home, to: "/profile/dashboard" },
       { name: "Courses", icon: BookOpen, to: "/profile/courses" },
+      { name: "Material", icon: FileText, to: "/profile/material" },
       { name: "Marks", icon: BarChart, to: "/profile/marks" },
       { name: "Notices", icon: Bell, to: "/profile/notices" },
       { name: "Profile", icon: User, to: "/profile/user" },

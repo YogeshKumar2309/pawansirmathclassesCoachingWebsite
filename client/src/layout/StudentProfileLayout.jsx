@@ -1,22 +1,19 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { LogOut, Menu, X, Bell } from "lucide-react";
+import { LogOut, Bell } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import StudentSidebar from "../components/admin/layout/StudentSidebar";
+import HeaderLogo from "../components/common/HeaderLogo";
+import { useLogoutHandler } from "../hooks/handler/useLogoutHandler";
 
 const StudentProfileLayout = () => {
-  const { auth, logout } = useAuth();
+  const { auth } = useAuth();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/login");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
+    const handleLogout = useLogoutHandler();
+
+
 
   if (auth.loading) {
     return (
@@ -59,20 +56,7 @@ const StudentProfileLayout = () => {
             {/* Mobile menu - REMOVED since we have bottom nav now */}
 
             {/* Brand */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">P</span>
-              </div>
-              <div>
-                <h1
-                  onClick={() => navigate("/")}
-                  className="text-xl sm:text-2xl font-extrabold text-white cursor-pointer hover:opacity-90 transition-opacity leading-tight"
-                >
-                  pawansirmathClasses
-                </h1>
-                <p className="text-xs text-white/80 hidden sm:block">Student Portal</p>
-              </div>
-            </div>
+           <HeaderLogo portal={'Student Portal ✨'}/>
           </div>
 
           {/* Right */}
@@ -120,7 +104,7 @@ const StudentProfileLayout = () => {
 
         {/* Main Content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 w-full min-w-0 pb-20 md:pb-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto min-h-screen">
             <Outlet />
           </div>
         </main>

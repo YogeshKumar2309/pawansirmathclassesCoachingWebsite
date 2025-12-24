@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { MapPin, Phone, Mail, ExternalLink, Code2, ChevronRight } from "lucide-react";
+const FooterGallery = lazy(() => import("./FooterGallery"));
 
 const footerLinks = [
     { title: "Home", link: "/" },
@@ -22,12 +23,12 @@ const contactInfo = {
 };
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1558021212-51b6ecfa0db9", // classroom
-  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b", // students studying
-  "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b", // group activity
-  "https://images.unsplash.com/photo-1529070538774-1843cb3265df", // lecture hall
-  "https://images.unsplash.com/photo-1519452575417-564c1401ecc0", // computer lab
-  "https://images.unsplash.com/photo-1509062522246-3755977927d7"  // campus/library
+    "https://images.unsplash.com/photo-1558021212-51b6ecfa0db9", // classroom
+    "https://images.unsplash.com/photo-1503676260728-1c00da094a0b", // students studying
+    "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b", // group activity
+    "https://images.unsplash.com/photo-1529070538774-1843cb3265df", // lecture hall
+    "https://images.unsplash.com/photo-1519452575417-564c1401ecc0", // computer lab
+    "https://images.unsplash.com/photo-1509062522246-3755977927d7"  // campus/library
 ];
 
 
@@ -38,7 +39,7 @@ const Footer = () => {
 
     return (
         <footer className="relative bg-gradient-to-br from-gray-100 via-gray-200 to-gray-100 text-gray-800 py-12 pb-24 md:pb-12 shadow-2xl overflow-hidden border-t border-gray-300">
-            
+
             {/* Animated Background Pattern */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute top-0 left-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
@@ -65,8 +66,8 @@ const Footer = () => {
                         <h3 className="text-lg font-bold mb-3 text-orange-600">Follow Us</h3>
                         <div className="flex flex-col space-y-2">
                             {socialLinks.map((s) => (
-                                <a 
-                                    key={s.name} 
+                                <a
+                                    key={s.name}
                                     href={s.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -104,7 +105,7 @@ const Footer = () => {
                         <div>
                             <h3 className="text-lg font-bold mb-4 text-orange-600">Contact</h3>
                             <div className="space-y-2 text-sm">
-                                <a 
+                                <a
                                     href={`https://maps.google.com/?q=${contactInfo.address}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -113,16 +114,16 @@ const Footer = () => {
                                     <MapPin size={16} className="flex-shrink-0 mt-0.5" />
                                     <span>{contactInfo.address}</span>
                                 </a>
-                                
-                                <a 
+
+                                <a
                                     href={`tel:${contactInfo.phone}`}
                                     className="flex items-center gap-2 group text-gray-700 hover:text-pink-600 transition-colors duration-300"
                                 >
                                     <Phone size={16} className="flex-shrink-0" />
                                     <span>{contactInfo.phone}</span>
                                 </a>
-                                
-                                <a 
+
+                                <a
                                     href={`mailto:${contactInfo.email}`}
                                     className="flex items-center gap-2 group text-gray-700 hover:text-pink-600 transition-colors duration-300"
                                 >
@@ -136,29 +137,13 @@ const Footer = () => {
                     </div>
 
                     {/* Gallery Section */}
-                    <div>
-                        <h3 className="text-lg font-bold mb-4 text-orange-600">Gallery</h3>
-                        <div className="grid grid-cols-3 gap-2">
-                            {galleryImages.map((img, index) => (
-                                <div 
-                                    key={index} 
-                                    className="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer border border-gray-300 hover:border-orange-500 transition-colors duration-300"
-                                    onMouseEnter={() => setHoveredGallery(index)}
-                                    onMouseLeave={() => setHoveredGallery(null)}
-                                >
-                                    <img
-                                        src={img}
-                                        alt={`Gallery ${index + 1}`}
-                                        className="w-full h-20 object-cover rounded-lg transform group-hover:scale-110 group-hover:rotate-2 transition-all duration-500"
-                                    />
-                                    <div className={`absolute inset-0 bg-gradient-to-t from-orange-500/60 via-pink-500/30 to-transparent transition-opacity duration-300 ${
-                                        hoveredGallery === index ? 'opacity-100' : 'opacity-0'
-                                    }`}></div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
+                    <Suspense fallback={<div className="text-sm text-gray-500">Loading gallery...</div>}>
+                        <FooterGallery
+                            images={galleryImages}
+                            hoveredGallery={hoveredGallery}
+                            setHoveredGallery={setHoveredGallery}
+                        />
+                    </Suspense>
                 </div>
 
                 {/* Divider */}
@@ -172,7 +157,7 @@ const Footer = () => {
                     </p>
 
                     {/* Developer Credit */}
-                    <a 
+                    <a
                         href="https://portfolio-delta-roan-4avfh28qqq.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
