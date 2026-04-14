@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CourseCard = ({ course }) => {
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col justify-between">
-      
+
       <div>
         <h3 className="text-xl font-semibold text-gray-800">
           {course.title}
@@ -32,11 +32,12 @@ const CourseCard = ({ course }) => {
 
       {/* CTA */}
       <Link
-      to={`/admission/confirm/${course.id}`}
-      className="mt-6 w-full px-4 py-3 rounded-xl font-semibold text-white 
+        to={import.meta.env.VITE_REGISTER_REDIRECT}
+        target="_blank"
+        className="mt-6 w-full px-4 py-3 rounded-xl font-semibold text-white 
         bg-gradient-to-r from-yellow-400 to-orange-500 
-        shadow-lg hover:scale-105 transition">
-     Admission Now
+        shadow-lg hover:scale-105 transition text-center">
+        Admission Now & See More details
       </Link>
     </div>
   );

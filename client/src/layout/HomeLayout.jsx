@@ -6,10 +6,11 @@ import { useAuth } from "../context/AuthContext";
 
 
 const HomeLayout = () => {
-    const { auth } = useAuth();
-      console.log("🏠 HomeLayout render:", auth);
+  const { auth } = useAuth();
+  console.log("🏠 HomeLayout render:", auth);
   return (
     <div className="min-h-screen flex flex-col">
+
       {/* Header */}
       <header>
         <Navbar />
@@ -20,6 +21,9 @@ const HomeLayout = () => {
       </main>
 
       {/* Footer */}
+      <a href="/app-release.apk" download>
+        <button>Download APK</button>
+      </a>
       <Footer />
     </div>
   );
