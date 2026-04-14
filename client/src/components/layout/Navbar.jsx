@@ -150,18 +150,21 @@ const handleLogout = useLogoutHandler();
             <div className="flex items-center gap-3">
               {!auth.loggedIn && (
                 <>
-                  <NavLink
-                    to="/login"
+                  <a
+                    href={import.meta.env.VITE_LOGIN_REDIRECT}
+                    target="_blank"
                     className="px-4 py-1 rounded-full border-2 border-white/40 hover:bg-white hover:text-purple-600 transition-all duration-300 font-semibold text-xs backdrop-blur-sm"
                   >
                     Login
-                  </NavLink>
-                  <NavLink
-                    to="/register"
+                  </a>
+                  <a
+                    href={import.meta.env.VITE_REGISTER_REDIRECT}
+                    target="_blank"
                     className="px-4 py-1 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 font-bold text-xs shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
-                    Register Free
-                  </NavLink>
+                    Register Free 
+                  </a>
+                
                 </>
               )}
               {auth.loggedIn && (
@@ -323,18 +326,20 @@ const handleLogout = useLogoutHandler();
                 </NavLink>
               </>) : (
               <div className="flex md:hidden">
-                <NavLink
-                  to="/login"
+                <a
+                  href={import.meta.env.VITE_LOGIN_REDIRECT}
+                  target="_blank"
                   className="px-4 py-1 rounded-full border-2 border-white/40 hover:bg-white hover:text-purple-600 transition-all duration-300 font-semibold text-xs backdrop-blur-sm"
                 >
                   Login
-                </NavLink>
-                <NavLink
-                  to="/register"
+                </a>
+                <a
+                  href={import.meta.env.VITE_REGISTER_REDIRECT}
+                    target="_blank"
                   className="px-4 py-1 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 font-bold text-xs shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   Register Free
-                </NavLink>
+                </a>
               </div>
             )}
           </div>
@@ -400,20 +405,22 @@ const handleLogout = useLogoutHandler();
               <li className="mt-4 pt-4 border-t-2 border-gray-100 flex gap-3">
                 {!auth.loggedIn && (
                   <>
-                    <NavLink
-                      to="/login"
+                    <a
+                      href={import.meta.env.VITE_LOGIN_REDIRECT}
+                      target="_blank"
                       onClick={handleMenuClose}
                       className="flex-1 py-3 px-4 text-center border-2 border-orange-500 text-orange-500 rounded-xl hover:bg-orange-500 hover:text-white transition-all font-bold shadow-md hover:shadow-lg"
                     >
                       Login
-                    </NavLink>
-                    <NavLink
-                      to="/register"
+                    </a>
+                    <a
+                      href={import.meta.env.VITE_REGISTER_REDIRECT}
+                    target="_blank"
                       onClick={handleMenuClose}
                       className="flex-1 py-3 px-4 text-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all font-bold shadow-lg hover:shadow-xl"
                     >
                       Register Free
-                    </NavLink>
+                    </a>
                   </>
                 )}
 
@@ -553,24 +560,26 @@ const handleLogout = useLogoutHandler();
             {/* Auth Buttons */}
             {!auth.loggedIn && (
               <>
-                <NavLink
-                  to="/login"
+                <a
+                   href={import.meta.env.VITE_LOGIN_REDIRECT}
+                      target="_blank"
                   className="flex flex-col items-center justify-center min-w-[60px] sm:min-w-[70px] px-1.5 sm:px-2 py-2 rounded-xl transition-all text-white/90 active:bg-white/10"
                 >
                   <div className="w-5 h-5 flex items-center justify-center rounded-full border-2 border-current">
                     <span className="text-xs font-bold">→</span>
                   </div>
                   <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase">Login</span>
-                </NavLink>
-                <NavLink
-                  to="/register"
+                </a>
+                <a
+                  href={import.meta.env.VITE_REGISTER_REDIRECT}
+                    target="_blank"
                   className="flex flex-col items-center justify-center min-w-[65px] sm:min-w-[80px] px-1.5 sm:px-2 py-2 rounded-xl transition-all bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg active:shadow-xl"
                 >
                   <div className="w-5 h-5 flex items-center justify-center">
                     <span className="text-base font-bold">+</span>
                   </div>
                   <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 uppercase">Register</span>
-                </NavLink>
+                </a>
               </>
             )}
 

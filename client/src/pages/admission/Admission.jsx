@@ -67,7 +67,7 @@ const Admission = () => {
         </div>
 
         {/* 📞 Contact / CTA */}
-        <div className="bg-white rounded-3xl p-10 shadow-lg text-center">
+        {/* <div className="bg-white rounded-3xl p-10 shadow-lg text-center">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">
             Ready to Take Admission?
           </h2>
@@ -92,7 +92,7 @@ const Admission = () => {
               <Mail size={20} /> Email Us
             </a>
           </div>
-        </div>
+        </div> */}
 
       </div>
     </div>

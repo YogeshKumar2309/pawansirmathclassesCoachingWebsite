@@ -1,0 +1,26 @@
+{
+  "totalPages": 4,
+  "testimonials": [
+    {
+      "name": "Khushi Pandey",
+      "feedback": "Sir हर chapter को इतना आसान बना देते हैं कि मज़ा आ जाता है!",
+      "year": "Class 9",
+      "image": "/1.png",
+      "stars": 5
+    },
+    {
+      "name": "Deepak Rawat",
+      "feedback": "Notes बहुत अच्छे हैं और doubt sessions से बहुत फायदा हुआ।",
+      "year": "Class 11",
+      "image": "/1.png",
+      "stars": 4
+    },
+    {
+      "name": "Priya Sahu",
+      "feedback": "Pawan Sir का तरीका सबसे अलग है, समझ में बहुत जल्दी आता है।",
+      "year": "Class 7",
+      "image": "/1.png",
+      "stars": 5
+    }
+  ]
+}

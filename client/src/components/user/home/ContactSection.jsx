@@ -157,7 +157,7 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
 
           {/* Contact Form */}
-          {/* <div className="bg-white/80 backdrop-blur-xl p-8 md:p-10 rounded-3xl shadow-2xl border-2 border-white/50">
+       {/*<div className="bg-white/80 backdrop-blur-xl p-8 md:p-10 rounded-3xl shadow-2xl border-2 border-white/50">
             <div className="flex items-center gap-3 mb-6">
               <Send className="w-6 h-6 text-purple-600" />
               <h3 className="text-2xl md:text-3xl font-bold text-gray-800">Send a Message</h3>

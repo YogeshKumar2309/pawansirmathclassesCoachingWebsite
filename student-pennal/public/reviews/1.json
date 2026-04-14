@@ -1,0 +1,26 @@
+{
+  "totalPages": 4,
+  "testimonials": [
+    {
+      "name": "Rahul Sharma",
+      "feedback": "Pawan Sir की teaching style ने मेरा पूरा गणित का डर खत्म कर दिया।",
+      "year": "Class 10",
+      "image": "/1.png",
+      "stars": 5
+    },
+    {
+      "name": "Anjali Verma",
+      "feedback": "Concepts बहुत अच्छे से समझाते हैं और doubts instantly clear करते हैं।",
+      "year": "Class 8",
+      "image": "/2.png",
+      "stars": 4
+    },
+    {
+      "name": "Vikas Singh",
+      "feedback": "Regular tests और practice sheets ने मेरे marks improve करने में बहुत मदद की।",
+      "year": "Class 12",
+      "image": "/3.jpg",
+      "stars": 5
+    }
+  ]
+}
