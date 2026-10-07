@@ -20,10 +20,7 @@ const HomeLayout = () => {
         <Outlet /> {/* Render child routes here */}
       </main>
 
-      {/* Footer */}
-      <a href="/app-release.apk" download>
-        <button>Download APK</button>
-      </a>
+     
       <Footer />
     </div>
   );

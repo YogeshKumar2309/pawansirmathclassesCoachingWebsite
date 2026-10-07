@@ -56,7 +56,7 @@ const handleLogout = useLogoutHandler();
   ];
 
   const moreMenuItems = [
-    { title: "SCHEDULE", link: "/schedule", icon: <Calendar size={20} />, emoji: "📅" },
+    // { title: "SCHEDULE", link: "/schedule", icon: <Calendar size={20} />, emoji: "📅" },
     { title: "TESTIMONIALS", link: "/testimonials", icon: <Star size={20} />, emoji: "⭐" },
     { title: "GALLERY", link: "/gallery", icon: <ImageIcon size={20} />, emoji: "🖼️" },
     { title: "CONTACT", link: "/contactUs", icon: <MessageCircle size={20} />, emoji: "📞" },

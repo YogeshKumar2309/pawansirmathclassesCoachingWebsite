@@ -31,7 +31,7 @@ const faqData = [
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
-    const [isActiveForm, setIsActiveForm] = useState(false);
+    // const [isActiveForm, setIsActiveForm] = useState(false);
 
   const toggleIndex = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -70,7 +70,7 @@ const FAQ = () => {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 text-center text-white">
+      {/* <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 text-center text-white">
         <h2 className="text-2xl font-bold">Still Have Questions?</h2>
         <p className="mt-2 text-white/80">Contact us directly for more information</p>
              {isActiveForm ?
@@ -82,7 +82,7 @@ const FAQ = () => {
           Contact Now
         </button>}
        
-      </div>
+      </div> */}
 
     </div>
   );

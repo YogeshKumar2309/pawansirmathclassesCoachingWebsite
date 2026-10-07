@@ -84,7 +84,7 @@ const Testimonials = () => {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 text-center text-white">
+      {/* <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 text-center text-white">
         <h2 className="text-2xl font-bold">
           Trusted by Students & Parents
         </h2>
@@ -98,7 +98,7 @@ const Testimonials = () => {
         >
           Visit Our Center
         </button>
-      </div>
+      </div> */}
 
     </div>
   );

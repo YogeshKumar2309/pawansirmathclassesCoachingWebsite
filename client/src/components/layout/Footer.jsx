@@ -147,14 +147,14 @@ const Footer = () => {
                 <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-6"></div>
 
                 {/* Bottom Bar */}
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
                     <p className="text-gray-600 text-center md:text-left">
                         © {new Date().getFullYear()} Pawan Sir Math's Classes —
                         <span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent font-semibold"> All Rights Reserved.</span>
                     </p>
 
                     {/* Developer Credit */}
-                    <a
+                    {/* <a
                         href="https://portfolio-delta-roan-4avfh28qqq.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -163,7 +163,7 @@ const Footer = () => {
                         <Code2 size={18} className="group-hover:rotate-12 transition-transform duration-300" />
                         <span className="font-semibold text-white">About Developer</span>
                         <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-                    </a>
+                    </a> */}
                 </div>
 
             </div>
