@@ -1,7 +1,7 @@
 // App.jsx
 import { Route, Routes, Navigate } from "react-router-dom";
 import HomeLayout from "./layout/HomeLayout";
-import Home from "./pages/home/Home";
+import Home from "./features/home/pages/Home";
 import Gallery from "./pages/gallery/Gallery";
 import Faculty from "./pages/faculty/Faculty";
 import AboutUs from "./pages/aboutUs/AboutUs";

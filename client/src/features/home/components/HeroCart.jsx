@@ -1,38 +1,11 @@
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useState, useEffect } from "react";
 
-// Hero Data
-const heroData = [
-  {
-    title: "Master Math With Experts",
-    description:
-      "Join our offline coaching and excel in exams with experienced faculty.",
-    image: "2.png",
-    ctaText: "Take Admission",
-    ctaLink: "/admission",
-  },
-  {
-    title: "Board Exam Preparation",
-    description:
-      "Strong foundation and exam-oriented preparation for Class 6–12 board exams.",
-    image: "logo/logo1.png",
-    ctaText: "Explore Courses",
-    ctaLink: "/course/11-12",
-  },
-  {
-    title: "Interactive Classroom Learning",
-    description:
-      "Experience live classes, doubt sessions, and practical learning.",
-    image: "logo/logo.png",
-    ctaText: "Book Free Demo",
-    ctaLink: "/contactUs",
-  },
-];
 
 
 
 // Hero Card Component
-const HeroCard = ({ heroItem, isActive }) => {
+const HeroCard = ({ heroItem, isActive}) => {
   return (
     <div className={`space-y-3 sm:space-y-4 md:space-y-6 w-full max-w-xl mx-auto lg:mx-0 text-center lg:text-left px-4 sm:px-6 transition-all duration-700 ${
       isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -62,11 +35,13 @@ const HeroCard = ({ heroItem, isActive }) => {
 };
 
 // Main HeroCart Component
-const HeroCart = () => {
+const HeroCart = ({heroData}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
+
+  console.log("heroData",heroData)
 
   // Auto-scroll functionality
   useEffect(() => {
